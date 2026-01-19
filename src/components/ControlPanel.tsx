@@ -12,7 +12,7 @@ export function ControlPanel({ score, onStop, disabled }: Props) {
       </p>
       <p className="mt-3 text-lg">বর্তমান স্কোর: {score}</p>
       <button
-        className="mt-4 rounded-full border-2 border-[var(--accent)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)] transition hover:bg-[var(--accent)] hover:text-white"
+        className="mt-4 w-full rounded-full border-2 border-[var(--accent)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)] transition hover:bg-[var(--accent)] hover:text-white sm:w-auto"
         onClick={onStop}
         disabled={disabled}
       >

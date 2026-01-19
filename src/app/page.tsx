@@ -20,7 +20,7 @@ import {
   SYSTEM_MEMOS,
 } from "@/components/data/messages";
 import { resolveEnding } from "@/components/ending";
-import { calculateScore, clamp } from "@/components/logic";
+import { calculateScoreDetails, clamp } from "@/components/logic";
 import type { Adjustment, Ending, LogEntry, Meters } from "@/components/types";
 
 const initialMeters: Meters = {
@@ -56,7 +56,7 @@ export default function Home() {
   }, [meters.chaos]);
 
   const chaosTilt = (meters.chaos / 100) * 2 - 1;
-  const score = calculateScore(meters);
+  const { score, breakdown } = calculateScoreDetails(meters);
 
   const handleAdjustment = (action: Adjustment) => {
     if (ending) return;
@@ -174,13 +174,19 @@ export default function Home() {
         {scoreOpen ? (
           <ScoreModal
             score={score}
+            breakdown={breakdown}
             onContinue={() => setScoreOpen(false)}
             onEnd={resetGame}
           />
         ) : null}
 
         {ending ? (
-          <EndingModal ending={ending} score={score} onRestart={resetGame} />
+          <EndingModal
+            ending={ending}
+            score={score}
+            breakdown={breakdown}
+            onRestart={resetGame}
+          />
         ) : null}
 
         <FooterCredit />

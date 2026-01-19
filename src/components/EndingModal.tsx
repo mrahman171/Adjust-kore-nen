@@ -3,13 +3,14 @@
 type Props = {
   ending: Ending;
   score: number;
+  breakdown: string[];
   onRestart: () => void;
 };
 
-export function EndingModal({ ending, score, onRestart }: Props) {
+export function EndingModal({ ending, score, breakdown, onRestart }: Props) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4 py-8">
-      <section className="w-full max-w-xl rounded-3xl border-2 border-[var(--accent)] bg-[var(--paper)] p-8 text-center shadow-[0_25px_70px_rgba(140,40,30,0.25)]">
+      <section className="w-full max-w-xl rounded-3xl border-2 border-[var(--accent)] bg-[var(--paper)] p-6 text-center shadow-[0_25px_70px_rgba(140,40,30,0.25)] sm:p-8 max-h-[85vh] overflow-y-auto">
         <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent)]">
           ফাইনাল ঘোষণা
         </p>
@@ -20,13 +21,19 @@ export function EndingModal({ ending, score, onRestart }: Props) {
             ফাইনাল স্কোর
           </p>
           <p className="mt-2 text-3xl font-semibold">{score}</p>
-          <p className="mt-2 text-sm text-[var(--ink)]/70">
-            স্কোর নির্ধারিত হয়েছে অ্যাডজাস্ট, বিশৃঙ্খলা, সংবাদ চিৎকার এবং
-            ধৈর্যের অনুপাত অনুযায়ী।
-          </p>
+          <div className="mt-3 text-left text-sm text-[var(--ink)]/70">
+            <p className="uppercase tracking-[0.2em] text-[var(--accent)]/80">
+              স্কোর হিসাব
+            </p>
+            <ul className="mt-2 space-y-1">
+              {breakdown.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </div>
         </div>
         <button
-          className="mt-6 rounded-full border-2 border-[var(--accent)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--accent)] transition hover:bg-[var(--accent)] hover:text-white"
+          className="mt-6 w-full rounded-full border-2 border-[var(--accent)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--accent)] transition hover:bg-[var(--accent)] hover:text-white sm:w-auto"
           onClick={onRestart}
         >
           আবার শুরু করুন
