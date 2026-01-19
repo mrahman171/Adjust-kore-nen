@@ -6,15 +6,18 @@ export const resolveEnding = ({
   committeeCount,
   announcementCount,
   silentCount,
+  publicPatience,
 }: {
   round: number;
   committeeCount: number;
   announcementCount: number;
   silentCount: number;
+  publicPatience: number;
 }): Ending | null => {
+  if (publicPatience <= 0) return ENDINGS.patience;
   if (silentCount >= 2 && round >= 4) return ENDINGS.silent;
   if (committeeCount >= 4) return ENDINGS.committee;
   if (announcementCount >= 4) return ENDINGS.press;
-  if (round >= 10) return ENDINGS.national;
+  if (round >= 12) return ENDINGS.national;
   return null;
 };

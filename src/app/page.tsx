@@ -89,6 +89,7 @@ export default function Home() {
       committeeCount,
       announcementCount,
       silentCount,
+      publicPatience: newPatience,
     });
 
     setMeters({

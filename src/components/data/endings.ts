@@ -5,6 +5,10 @@ export const ENDINGS: Record<string, Ending> = {
     title: "জাতীয় সাফল্য",
     message: "জাতি সফলভাবে অ্যাডজাস্ট করেছে।",
   },
+  patience: {
+    title: "ধৈর্য সমাপ্তি",
+    message: "জনগণের ধৈর্য শেষ। সিস্টেম ঘোষণা দিয়েছে: নিয়ন্ত্রণে।",
+  },
   committee: {
     title: "কমিটি ওভারফ্লো",
     message: "দায়িত্ব এখন সব কমিটির মধ্যে ভাগ হয়েছে।",
