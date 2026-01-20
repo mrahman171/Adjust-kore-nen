@@ -10,6 +10,7 @@ export const PROBLEMS: Problem[] = [
       "অ্যাম্বুলেন্স আটকে আছে। ট্রাফিক সিগন্যাল আত্মবিশ্বাসী।",
       "যানজটকে শৃঙ্খলা বলা হচ্ছে। চলাচল পরামর্শভিত্তিক।",
     ],
+    correctTags: ["blame", "announce"],
   },
   {
     category: "শিক্ষা",
@@ -20,6 +21,7 @@ export const PROBLEMS: Problem[] = [
       "পরীক্ষা স্থগিত। প্রশ্ন ফাঁস তদন্ত চলমান, প্রশ্ন পাওয়া গেছে।",
       "পরীক্ষা পুনঃঘোষিত। সময়সূচি এখন খসড়া, খসড়ার খসড়া।",
     ],
+    correctTags: ["investigate", "committee"],
   },
   {
     category: "বাজারদর",
@@ -30,6 +32,7 @@ export const PROBLEMS: Problem[] = [
       "দাম ঐতিহাসিক। নজরদারি জোরদার, ট্যাগ বদলানো নয়।",
       "দাম সমন্বিত। সমন্বয় আরও সমন্বিত, ক্রেতা আরও সমন্বিত।",
     ],
+    correctTags: ["blame", "investigate"],
   },
   {
     category: "প্রশাসন",
@@ -40,6 +43,7 @@ export const PROBLEMS: Problem[] = [
       "মিটিং নির্ধারণে মিটিং প্রয়োজন।",
       "মিটিংয়ের স্মারক তৈরি হয়েছে মিটিং শুরুর আগে।",
     ],
+    correctTags: ["committee", "delay"],
   },
   {
     category: "যোগাযোগ",
@@ -50,6 +54,7 @@ export const PROBLEMS: Problem[] = [
       "ভিন্ন ঘোষণা চলমান। নীরবতা এখন কৌশল, কৌশল এখন নীরব।",
       "ভিন্ন ঘোষণা স্থায়ী। একমত হওয়ার পর আবার দ্বিমত।",
     ],
+    correctTags: ["silent", "announce"],
   },
   {
     category: "বিদ্যুৎ",
@@ -60,6 +65,7 @@ export const PROBLEMS: Problem[] = [
       "বিদ্যুৎ পরিস্থিতি স্থিতিশীল বলা হচ্ছে। ঘরে ভিন্ন অভিজ্ঞতা।",
       "বিদ্যুৎ সরবরাহ স্বাভাবিক। তবে বিজ্ঞপ্তি জরুরি, ক্যান্ডেল প্রস্তুত।",
     ],
+    correctTags: ["blame", "delay"],
   },
   {
     category: "পরিবহন",
@@ -70,6 +76,7 @@ export const PROBLEMS: Problem[] = [
       "ট্রেন শিডিউল এখন প্রস্তাবিত সময়। প্রস্তাবনা পুনর্বিবেচ্য।",
       "ট্রেনকে সময়ের সঙ্গে সমন্বয় করা হয়েছে। সময় আপাতত স্থগিত।",
     ],
+    correctTags: ["announce", "delay"],
   },
   {
     category: "স্বাস্থ্যসেবা",
@@ -80,6 +87,7 @@ export const PROBLEMS: Problem[] = [
       "রিপোর্ট এসেছে। কিন্তু ওষুধে ঘাটতি, ঘাটতিতে উপস্থিতি।",
       "সেবা উন্নত বলা হচ্ছে। লাইনে অপেক্ষা আরও দীর্ঘ।",
     ],
+    correctTags: ["committee", "investigate"],
   },
   {
     category: "ডিজিটাল সেবা",
@@ -90,6 +98,7 @@ export const PROBLEMS: Problem[] = [
       "OTP এসেছে। কিন্তু ফর্ম জমা হচ্ছে না, ফর্মও অনলাইনে।",
       "ফর্ম জমা হয়েছে। যাচাইয়ের অপেক্ষা, অপেক্ষার যাচাই চলছে।",
     ],
+    correctTags: ["blame", "delay"],
   },
   {
     category: "পানি",
@@ -100,6 +109,7 @@ export const PROBLEMS: Problem[] = [
       "পানি আসছে। রংও এসেছে।",
       "পানি স্বাভাবিক বলা হচ্ছে। বোতল পানি ব্যস্ত।",
     ],
+    correctTags: ["announce", "investigate"],
   },
   {
     category: "গ্যাস",
@@ -110,6 +120,7 @@ export const PROBLEMS: Problem[] = [
       "গ্যাস চাপ কম। চাপের বিষয়ে সভা চলছে।",
       "গ্যাস পরিস্থিতি স্বাভাবিক। চুলা মানসিকভাবে জ্বলছে।",
     ],
+    correctTags: ["blame", "committee"],
   },
   {
     category: "ট্রাফিক আইন",
@@ -120,6 +131,7 @@ export const PROBLEMS: Problem[] = [
       "আইন আছে, প্রয়োগে বিরতি।",
       "সচেতনতা বাড়ানো হচ্ছে। হর্নও বাড়ছে।",
     ],
+    correctTags: ["announce", "blame"],
   },
   {
     category: "পাসপোর্ট",
@@ -130,6 +142,7 @@ export const PROBLEMS: Problem[] = [
       "এসএমএস এসেছে। কিন্তু স্লট নেই।",
       "পাসপোর্ট প্রস্তুত। ছবি মিলছে না।",
     ],
+    correctTags: ["delay", "silent"],
   },
   {
     category: "নাগরিক সেবা",
@@ -140,6 +153,7 @@ export const PROBLEMS: Problem[] = [
       "যাচাই চলছে। কাগজে নতুন কাগজ।",
       "সমাধান হয়েছে বলা হচ্ছে। রেজিস্টার খুঁজছে।",
     ],
+    correctTags: ["investigate", "delay"],
   },
   {
     category: "মোবাইল নেটওয়ার্ক",
@@ -150,6 +164,7 @@ export const PROBLEMS: Problem[] = [
       "গতি আছে, হঠাৎ উধাও।",
       "সেবায় উন্নতি বলা হচ্ছে। ডাটা প্যাকেট চিন্তাশীল।",
     ],
+    correctTags: ["blame", "announce"],
   },
   {
     category: "বৃষ্টির জলাবদ্ধতা",
@@ -160,6 +175,7 @@ export const PROBLEMS: Problem[] = [
       "ড্রেন আছে, কিন্তু ড্রেনও জলাবদ্ধ।",
       "পাম্প চলছে। পানি আত্মবিশ্বাসী।",
     ],
+    correctTags: ["blame", "silent"],
   },
   {
     category: "বায়ুদূষণ",
@@ -170,6 +186,7 @@ export const PROBLEMS: Problem[] = [
       "দূষণ নিয়ন্ত্রণে বলা হচ্ছে। মাস্ক আনন্দিত।",
       "দূষণ স্বাভাবিক বলা হচ্ছে। স্বাভাবিক মানে সহনীয়।",
     ],
+    correctTags: ["announce", "committee"],
   },
   {
     category: "হাটবাজার",
@@ -180,6 +197,7 @@ export const PROBLEMS: Problem[] = [
       "দাম নিয়ন্ত্রণে অভিযান চলছে। অভিযান ছবি তুলছে।",
       "দাম স্বাভাবিক ঘোষণা। স্বাভাবিক মানে নতুন স্বাভাবিক।",
     ],
+    correctTags: ["investigate", "blame"],
   },
   {
     category: "অফিস সময়",
@@ -190,6 +208,7 @@ export const PROBLEMS: Problem[] = [
       "ফাইল এসেছে। দায়িত্বশীল ব্যক্তি আছেন, কিন্তু দায়িত্ব অনুপস্থিত।",
       "সেবা দেওয়া হয়েছে। তবে নতুন ফর্ম লাগবে।",
     ],
+    correctTags: ["delay", "silent"],
   },
   {
     category: "বর্জ্য ব্যবস্থাপনা",
@@ -200,6 +219,7 @@ export const PROBLEMS: Problem[] = [
       "ট্রাক এসেছে। কিন্তু সময় এখন অন্য সময়।",
       "পরিচ্ছন্নতা সফল। গন্ধ সন্তুষ্ট নয়।",
     ],
+    correctTags: ["announce", "blame"],
   },
   {
     category: "কমিটি",
@@ -210,6 +230,7 @@ export const PROBLEMS: Problem[] = [
       "কমিটি রিপোর্ট জমা দিয়েছে। রিপোর্ট হারিয়ে গেছে।",
       "কমিটি পুনর্গঠন করা হয়েছে। আগের কমিটি অব্যাহতি পেয়েছে।",
     ],
+    correctTags: ["committee", "investigate"],
   },
   // New Bangladeshi-specific problems
   {
@@ -221,6 +242,7 @@ export const PROBLEMS: Problem[] = [
       "রিকশাচালক জানিয়েছেন তেলের দাম বেড়েছে। রিকশায় তেল লাগে না।",
       "ভাড়া সমন্বয় হয়েছে। সমন্বয় মানে দ্বিগুণ।",
     ],
+    correctTags: ["blame", "announce"],
   },
   {
     category: "লোডশেডিং",
@@ -231,6 +253,7 @@ export const PROBLEMS: Problem[] = [
       "জরুরি রক্ষণাবেক্ষণ চলছে। জরুরি মানে সারাদিন।",
       "বিদ্যুৎ এসেছে। ফ্রিজের বরফ গলে গেছে, মাংস নষ্ট।",
     ],
+    correctTags: ["silent", "blame"],
   },
   {
     category: "হরতাল",
@@ -241,6 +264,7 @@ export const PROBLEMS: Problem[] = [
       "হরতাল প্রত্যাহার হয়নি। নতুন হরতালের সাথে মার্জ হয়েছে।",
       "হরতাল শেষ। পরের হরতালের তারিখ ঘোষিত।",
     ],
+    correctTags: ["silent", "delay"],
   },
   {
     category: "মশার উপদ্রব",
@@ -251,6 +275,7 @@ export const PROBLEMS: Problem[] = [
       "ডেঙ্গু পরিস্থিতি নিয়ন্ত্রণে বলা হচ্ছে। হাসপাতালে সিট নেই।",
       "মশার বিরুদ্ধে সচেতনতা বাড়ানো হচ্ছে। মশা অসচেতন।",
     ],
+    correctTags: ["announce", "committee"],
   },
   {
     category: "ফুটপাত দখল",
@@ -261,6 +286,7 @@ export const PROBLEMS: Problem[] = [
       "ফুটপাত উন্নয়ন হয়েছে। উন্নয়ন এখন দখলে।",
       "পথচারীদের রাস্তায় হাঁটতে বলা হচ্ছে। গাড়ি রাজি নয়।",
     ],
+    correctTags: ["investigate", "announce"],
   },
   {
     category: "পরীক্ষার ফল",
@@ -271,6 +297,7 @@ export const PROBLEMS: Problem[] = [
       "রেজাল্ট দেখা গেছে। নম্বর মিলছে না, পুনর্মূল্যায়ন চলছে।",
       "পাশের হার বেড়েছে। গ্রেডিং সিস্টেম নমনীয় হয়েছে।",
     ],
+    correctTags: ["delay", "blame"],
   },
   {
     category: "সিএনজি পাওয়া",
@@ -281,6 +308,7 @@ export const PROBLEMS: Problem[] = [
       "সিএনজি স্ট্যান্ড খালি। সব সিএনজি ব্যস্ত বলা হচ্ছে।",
       "সিএনজিতে গ্যাস নেই। গ্যাস স্টেশনে লাইন, লাইন নিজেই জ্যাম।",
     ],
+    correctTags: ["blame", "silent"],
   },
   {
     category: "বিল্ডিং নির্মাণ",
@@ -291,6 +319,7 @@ export const PROBLEMS: Problem[] = [
       "রাস্তা বন্ধ। বালি-সিমেন্ট রাস্তায়, গাড়ি ঘুরপথে।",
       "নির্মাণ শেষ হয়নি। নতুন তলা যোগ হচ্ছে, অনুমতি পরে।",
     ],
+    correctTags: ["investigate", "silent"],
   },
   {
     category: "ব্যাংক লাইন",
@@ -301,6 +330,7 @@ export const PROBLEMS: Problem[] = [
       "ম্যানেজার নেই। সিদ্ধান্ত পরে হবে, পরে মানে আগামীকাল।",
       "লাঞ্চ ব্রেক শুরু। ব্রেক এক ঘণ্টা, মাঝে মাঝে দুই।",
     ],
+    correctTags: ["delay", "blame"],
   },
   {
     category: "ভেজাল খাবার",
@@ -311,6 +341,7 @@ export const PROBLEMS: Problem[] = [
       "ভেজাল ধরা পড়েছে। জরিমানা হয়েছে, ব্যবসা চলছে।",
       "ভেজালমুক্ত ঘোষণা। পেটের অসুখ বাড়ছে।",
     ],
+    correctTags: ["investigate", "committee"],
   },
   {
     category: "চাকরির ইন্টারভিউ",
@@ -321,6 +352,7 @@ export const PROBLEMS: Problem[] = [
       "নিয়োগ স্থগিত। বাজেট সমস্যা বলা হচ্ছে।",
       "নিয়োগ হয়েছে। তবে অন্য কাউকে, যোগ্যতা ভিন্ন।",
     ],
+    correctTags: ["silent", "delay"],
   },
   {
     category: "ফ্ল্যাট ভাড়া",
@@ -331,6 +363,7 @@ export const PROBLEMS: Problem[] = [
       "চুক্তি হয়েছে। শর্ত বাড়ছে প্রতি মাসে।",
       "ভাড়া বাড়ানো হচ্ছে। কারণ: সবকিছু বাড়ছে।",
     ],
+    correctTags: ["blame", "committee"],
   },
   {
     category: "ওয়াইফাই স্পিড",
@@ -341,6 +374,7 @@ export const PROBLEMS: Problem[] = [
       "টেকনিশিয়ান আসবে। সময় দিয়েছে সকাল থেকে সন্ধ্যা।",
       "সমস্যা সমাধান হয়েছে বলা হচ্ছে। স্পিড একই।",
     ],
+    correctTags: ["blame", "delay"],
   },
   {
     category: "বাস সার্ভিস",
@@ -351,6 +385,7 @@ export const PROBLEMS: Problem[] = [
       "বাস রুট বদলেছে। নোটিশ দেওয়া হয়নি, যাত্রী আবিষ্কার করেছে।",
       "এসি বাস এসেছে। এসি চলছে না, ভাড়া এসি রেটে।",
     ],
+    correctTags: ["announce", "blame"],
   },
   {
     category: "পার্কিং সমস্যা",
@@ -361,6 +396,7 @@ export const PROBLEMS: Problem[] = [
       "জরিমানা হচ্ছে। জরিমানা দিয়ে একই জায়গায় রাখছে।",
       "পার্কিং বিল্ডিং হবে। প্রস্তাবনা ২০ বছর ধরে।",
     ],
+    correctTags: ["committee", "delay"],
   },
   {
     category: "ভ্যাট ও ট্যাক্স",
@@ -371,6 +407,7 @@ export const PROBLEMS: Problem[] = [
       "সময়সীমা বাড়েনি। জরিমানা শুরু, জরিমানার হার অস্পষ্ট।",
       "রিফান্ড আসবে। আসার তারিখ অজানা, অপেক্ষা চলছে।",
     ],
+    correctTags: ["delay", "silent"],
   },
   {
     category: "কুরিয়ার সার্ভিস",
@@ -381,6 +418,7 @@ export const PROBLEMS: Problem[] = [
       "পার্সেল এসেছে। ভেতরে অন্য জিনিস।",
       "রিটার্ন প্রসেস শুরু। রিফান্ড আসবে ১৫-৩০ দিনে, মানে ৬০ দিনে।",
     ],
+    correctTags: ["blame", "investigate"],
   },
   {
     category: "বিয়ের সিজন",
@@ -391,6 +429,7 @@ export const PROBLEMS: Problem[] = [
       "মাইকে গান বাজছে। ভলিউম নিয়ন্ত্রণ ঐচ্ছিক।",
       "বিয়ে শেষ রাত ২টায়। পরদিন অফিস আছে।",
     ],
+    correctTags: ["silent", "announce"],
   },
   {
     category: "স্কুল ভর্তি",
@@ -401,6 +440,7 @@ export const PROBLEMS: Problem[] = [
       "ডোনেশন লাগবে। ডোনেশন মানে বাধ্যতামূলক দান।",
       "ভর্তি হয়েছে। বই-খাতা কিনতে আরেক বাজেট।",
     ],
+    correctTags: ["committee", "blame"],
   },
   {
     category: "সরকারি ছুটি",
@@ -411,6 +451,7 @@ export const PROBLEMS: Problem[] = [
       "ছুটির দিনে অফিস। বসের নির্দেশ সরকারি ছুটির উর্ধ্বে।",
       "ছুটি সামনে পিছনে সরেছে। প্ল্যান বাতিল, টিকিট কাটা।",
     ],
+    correctTags: ["announce", "silent"],
   },
   {
     category: "ক্রিকেট ম্যাচ",
@@ -421,6 +462,7 @@ export const PROBLEMS: Problem[] = [
       "বাংলাদেশ জিতেছে। রাস্তায় মিছিল, ঘুম নিষেধ।",
       "ম্যাচ বাতিল। বৃষ্টি দায়ী, বৃষ্টি নেই।",
     ],
+    correctTags: ["silent", "delay"],
   },
   {
     category: "রমজানের ইফতার",
@@ -431,6 +473,7 @@ export const PROBLEMS: Problem[] = [
       "ইফতারে দাওয়াত। খাবার শেষ, আপনি পৌঁছানোর আগেই।",
       "ইফতারের পর রাস্তা। সবাই একসাথে বের হয়েছে, জ্যাম।",
     ],
+    correctTags: ["blame", "announce"],
   },
   {
     category: "ঈদের কেনাকাটা",
@@ -441,6 +484,7 @@ export const PROBLEMS: Problem[] = [
       "টেইলর বলেছে ঈদের আগে দেবে। ঈদের পরে দিয়েছে।",
       "ঈদের সেল চলছে। দাম আগের চেয়ে বেশি।",
     ],
+    correctTags: ["delay", "blame"],
   },
   {
     category: "ইউটিলিটি বিল",
@@ -451,6 +495,7 @@ export const PROBLEMS: Problem[] = [
       "বিল দিয়েছেন। রসিদ হারিয়ে গেছে, আবার দিন।",
       "সংযোগ বিচ্ছিন্ন হয়েছে। বিল দেওয়া ছিল, রেকর্ড নেই।",
     ],
+    correctTags: ["investigate", "blame"],
   },
   {
     category: "গ্রামে যাওয়া",
@@ -461,6 +506,7 @@ export const PROBLEMS: Problem[] = [
       "ফেরিতে উঠবেন। ফেরি জ্যামে, জ্যাম পানিতে।",
       "গ্রামে পৌঁছেছেন। ঈদ শেষ, সবাই ফিরে গেছে।",
     ],
+    correctTags: ["announce", "delay"],
   },
   {
     category: "বিকাশ/নগদ",
@@ -471,6 +517,7 @@ export const PROBLEMS: Problem[] = [
       "সার্ভার ডাউন। টাকা কেটে গেছে, পৌঁছায়নি।",
       "কাস্টমার কেয়ারে ফোন। ব্যস্ত, পরে চেষ্টা করুন (চিরকাল)।",
     ],
+    correctTags: ["blame", "investigate"],
   },
   {
     category: "লিফট সমস্যা",
@@ -481,6 +528,7 @@ export const PROBLEMS: Problem[] = [
       "লিফট ঠিক হয়েছে। ১০ তলার জন্য ৫ মিনিট অপেক্ষা।",
       "লিফটে ১৫ জন। ক্যাপাসিটি ৮, সবাই আত্মবিশ্বাসী।",
     ],
+    correctTags: ["delay", "silent"],
   },
   {
     category: "ফোন চার্জার",
@@ -491,6 +539,7 @@ export const PROBLEMS: Problem[] = [
       "সকেট কাজ করছে। চার্জিং ০% থেকে নড়ছে না।",
       "ফোন চার্জ হচ্ছে। গুরুত্বপূর্ণ কল আসছে, ফোন ধরতে চার্জার খুলতে হবে।",
     ],
+    correctTags: ["blame", "silent"],
   },
   {
     category: "ডেলিভারি খাবার",
@@ -501,6 +550,7 @@ export const PROBLEMS: Problem[] = [
       "খাবার এসেছে। অর্ডার ভুল, বিরিয়ানি চেয়েছিলেন, খিচুড়ি পেয়েছেন।",
       "সঠিক খাবার এসেছে। ঠান্ডা, রিভিউ দিন বলে নোটিফিকেশন।",
     ],
+    correctTags: ["blame", "delay"],
   },
   {
     category: "এটিএম",
@@ -511,6 +561,7 @@ export const PROBLEMS: Problem[] = [
       "টাকা তুলেছেন। ৫০০ টাকার নোট নেই, সব ১০০ টাকায়।",
       "এটিএম বুথ বন্ধ। এসি ঠিক করা হচ্ছে, এসি গুরুত্বপূর্ণ।",
     ],
+    correctTags: ["blame", "announce"],
   },
   {
     category: "জিম মেম্বারশিপ",
@@ -521,6 +572,7 @@ export const PROBLEMS: Problem[] = [
       "জিমে গেছেন। সব মেশিন ব্যস্ত, সেলফি তুলে ফিরে এসেছেন।",
       "মেম্বারশিপ শেষ। রিনিউ করেছেন, আবার যাওয়া হয়নি।",
     ],
+    correctTags: ["delay", "blame"],
   },
   {
     category: "নেটফ্লিক্স/স্ট্রিমিং",
@@ -531,6 +583,7 @@ export const PROBLEMS: Problem[] = [
       "দেখা শুরু। স্পয়লার দিয়ে দিয়েছে বন্ধু।",
       "সিরিজ শেষ করেছেন রাত ৩টায়। সকালে অফিস, ঘুম নেই।",
     ],
+    correctTags: ["blame", "silent"],
   },
   {
     category: "প্লাম্বিং",
@@ -541,6 +594,7 @@ export const PROBLEMS: Problem[] = [
       "পার্টস এনেছে। ভুল সাইজ, আবার যাচ্ছে।",
       "ট্যাপ ঠিক হয়েছে। অন্য জায়গায় লিক শুরু।",
     ],
+    correctTags: ["delay", "blame"],
   },
   {
     category: "সেলুন/পার্লার",
@@ -551,6 +605,7 @@ export const PROBLEMS: Problem[] = [
       "কাটা শুরু হয়েছে। ছবি দেখিয়েছিলেন, কাটছে অন্যরকম।",
       "কাটা শেষ। আয়না দেখে চুপ, বাসায় গিয়ে কান্না।",
     ],
+    correctTags: ["silent", "delay"],
   },
   {
     category: "অনলাইন শপিং",
@@ -561,6 +616,7 @@ export const PROBLEMS: Problem[] = [
       "রিটার্ন হয়েছে। রিফান্ড আসবে কুপনে, টাকায় না।",
       "নতুন অর্ডার দিয়েছেন। একই অভিজ্ঞতা, শিখেননি।",
     ],
+    correctTags: ["blame", "investigate"],
   },
   {
     category: "পাসপোর্ট ভিসা",
@@ -571,6 +627,7 @@ export const PROBLEMS: Problem[] = [
       "ইন্টারভিউ হয়েছে। আন্ডার প্রসেসিং, প্রসেসিং চলছে অনির্দিষ্টকালে।",
       "ভিসা হয়েছে। প্ল্যান বদলে গেছে, যাওয়া হচ্ছে না।",
     ],
+    correctTags: ["delay", "silent"],
   },
   {
     category: "ওয়াশিং মেশিন",
@@ -581,6 +638,7 @@ export const PROBLEMS: Problem[] = [
       "শুকাতে দিয়েছেন। বৃষ্টি শুরু হয়েছে।",
       "কাপড় শুকিয়েছে। ইস্ত্রি করার শক্তি নেই, আগামীকাল।",
     ],
+    correctTags: ["blame", "delay"],
   },
   {
     category: "পার্টি/দাওয়াত",
@@ -591,6 +649,7 @@ export const PROBLEMS: Problem[] = [
       "খাবারে লাইন। প্লেটে তুলতে তুলতে ফুরিয়ে গেছে।",
       "বাসায় ফিরেছেন। ক্ষুধার্ত, ম্যাগি রান্না করছেন।",
     ],
+    correctTags: ["silent", "delay"],
   },
   {
     category: "এসাইনমেন্ট/ডেডলাইন",
@@ -601,6 +660,7 @@ export const PROBLEMS: Problem[] = [
       "সাবমিট করতে গেছেন। ওয়েবসাইট ক্র্যাশ।",
       "এক্সটেনশন চেয়েছেন। স্যার বলেছেন 'না'।",
     ],
+    correctTags: ["delay", "blame"],
   },
   {
     category: "ফেসবুক/সোশ্যাল মিডিয়া",
@@ -611,6 +671,7 @@ export const PROBLEMS: Problem[] = [
       "আনফ্রেন্ড করেছেন। মিউচুয়াল ফ্রেন্ড জিজ্ঞেস করছে।",
       "ডিঅ্যাক্টিভেট করবেন ঠিক করেছেন। ৩ ঘণ্টা পর আবার অ্যাক্টিভ।",
     ],
+    correctTags: ["silent", "blame"],
   },
   {
     category: "গাড়ির সার্ভিসিং",
@@ -621,6 +682,7 @@ export const PROBLEMS: Problem[] = [
       "গাড়ি পেয়েছেন। বিল দেখে চোখ কপালে।",
       "গাড়ি নিয়ে বের হয়েছেন। নতুন শব্দ হচ্ছে।",
     ],
+    correctTags: ["delay", "blame"],
   },
   {
     category: "মুভি থিয়েটার",
@@ -631,6 +693,7 @@ export const PROBLEMS: Problem[] = [
       "পাশের সিটে বাচ্চা। কান্না থামছে না।",
       "ক্লাইম্যাক্সে ফোন বেজেছে। পাশের মানুষ ধরে কথা বলছে।",
     ],
+    correctTags: ["silent", "blame"],
   },
   {
     category: "ডায়েট",
@@ -641,6 +704,7 @@ export const PROBLEMS: Problem[] = [
       "ওজন মেপেছেন। বেড়েছে, স্কেল নষ্ট বলে ধরে নিয়েছেন।",
       "নতুন ডায়েট প্ল্যান করেছেন। পরের সোমবার থেকে।",
     ],
+    correctTags: ["delay", "blame"],
   },
   {
     category: "এলার্ম ঘড়ি",
@@ -651,6 +715,7 @@ export const PROBLEMS: Problem[] = [
       "একাধিক এলার্ম দিয়েছেন। সব একসাথে বন্ধ করে ঘুমিয়েছেন।",
       "এলার্ম ছাড়া উঠবেন ঠিক করেছেন। দুপুরে জেগেছেন।",
     ],
+    correctTags: ["blame", "delay"],
   },
   {
     category: "পাওয়ার ব্যাংক",
@@ -661,6 +726,7 @@ export const PROBLEMS: Problem[] = [
       "চার্জ আছে। ক্যাবল নেই।",
       "সব আছে। ফোনের পোর্ট নষ্ট।",
     ],
+    correctTags: ["blame", "silent"],
   },
   {
     category: "ব্যুরোক্রেসি সিমুলেটর ২০২৬",
@@ -671,5 +737,6 @@ export const PROBLEMS: Problem[] = [
       "সই হয়েছে। ফটোকপি লাগবে সত্যায়িত, সত্যায়নকারী অফিসে নেই।",
       "সব হয়েছে। ফাইল হারিয়ে গেছে, প্রথম থেকে শুরু করুন।",
     ],
+    correctTags: ["committee", "delay"],
   },
 ];

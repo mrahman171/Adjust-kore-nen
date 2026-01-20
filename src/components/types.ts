@@ -2,6 +2,7 @@
   category: string;
   base: string;
   escalations: string[];
+  correctTags?: ("committee" | "announce" | "delay" | "blame" | "investigate" | "silent")[];
 };
 
 export type Adjustment = {

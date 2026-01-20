@@ -6,24 +6,37 @@ type Props = {
   onAdjust: (action: Adjustment) => void;
   disabled?: boolean;
   round?: number;
+  correctTags?: ("committee" | "announce" | "delay" | "blame" | "investigate" | "silent")[];
 };
 
-// Get 4 random adjustments, trying to pick from different categories
-function getRandomAdjustments(): Adjustment[] {
+// Get 4 random adjustments, ensuring at least one matches the correct tags for the problem
+function getRandomAdjustments(
+  correctTags?: ("committee" | "announce" | "delay" | "blame" | "investigate" | "silent")[]
+): Adjustment[] {
   const shuffled = [...ADJUSTMENTS].sort(() => Math.random() - 0.5);
   const selected: Adjustment[] = [];
   const usedTags = new Set<string>();
 
-  // First pass: try to get one from each category
+  // First pass: ensure at least one correct adjustment is included
+  if (correctTags && correctTags.length > 0) {
+    const correctAdjustments = shuffled.filter((adj) => correctTags.includes(adj.tag));
+    if (correctAdjustments.length > 0) {
+      const correctAdj = correctAdjustments[Math.floor(Math.random() * correctAdjustments.length)];
+      selected.push(correctAdj);
+      usedTags.add(correctAdj.tag);
+    }
+  }
+
+  // Second pass: try to get one from each remaining category for variety
   for (const adj of shuffled) {
     if (selected.length >= 4) break;
-    if (!usedTags.has(adj.tag)) {
+    if (!usedTags.has(adj.tag) && !selected.includes(adj)) {
       selected.push(adj);
       usedTags.add(adj.tag);
     }
   }
 
-  // Second pass: fill remaining slots with any random ones
+  // Third pass: fill remaining slots with any random ones
   for (const adj of shuffled) {
     if (selected.length >= 4) break;
     if (!selected.includes(adj)) {
@@ -34,9 +47,9 @@ function getRandomAdjustments(): Adjustment[] {
   return selected.sort(() => Math.random() - 0.5);
 }
 
-export function AdjustmentGrid({ onAdjust, disabled, round }: Props) {
+export function AdjustmentGrid({ onAdjust, disabled, round, correctTags }: Props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const options = useMemo(() => getRandomAdjustments(), [round]);
+  const options = useMemo(() => getRandomAdjustments(correctTags), [round, correctTags]);
 
   return (
     <div className="mt-6 grid gap-3 sm:grid-cols-2">

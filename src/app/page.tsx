@@ -78,8 +78,15 @@ export default function Home() {
     const nextRound = round + 1;
     const chaosIncrease = 8 + Math.floor(nextRound / 2);
     const newChaos = clamp(meters.chaos + chaosIncrease, 0, 100);
-    const patienceDrop = 6 + Math.floor(newChaos / 15);
-    const newPatience = clamp(meters.publicPatience - patienceDrop, 0, 100);
+
+    // Check if this is a proper adjustment for the current problem
+    const isProperAdjustment = problem.correctTags?.includes(action.tag) ?? false;
+
+    // If proper adjustment, increase patience; otherwise decrease
+    const patienceChange = isProperAdjustment
+      ? 8 + Math.floor(nextRound / 3) // Increase patience for correct adjustment
+      : -(6 + Math.floor(newChaos / 15)); // Decrease patience for wrong adjustment
+    const newPatience = clamp(meters.publicPatience + patienceChange, 0, 100);
     const noiseIncrease = 6 + (action.tag === "announce" ? 10 : 0);
     const newNoise = clamp(meters.mediaNoise + noiseIncrease, 0, 100);
 
@@ -170,6 +177,7 @@ export default function Home() {
                 onAdjust={handleAdjustment}
                 disabled={Boolean(ending)}
                 round={round}
+                correctTags={problem.correctTags}
               />
             </ProblemPanel>
             <SidePanel>
