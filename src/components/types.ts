@@ -1,4 +1,5 @@
 ﻿export type Problem = {
+  adjustment: string;
   category: string;
   base: string;
   escalations: string[];
