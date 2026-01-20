@@ -23,6 +23,19 @@ import { resolveEnding } from "@/components/ending";
 import { calculateScoreDetails, clamp } from "@/components/logic";
 import type { Adjustment, Ending, LogEntry, Meters } from "@/components/types";
 
+// Helper to get random index from array, optionally excluding certain indices
+function getRandomIndex(length: number, exclude?: number[]): number {
+  const available = Array.from({ length }, (_, i) => i).filter(
+    (i) => !exclude?.includes(i)
+  );
+  return available[Math.floor(Math.random() * available.length)];
+}
+
+// Helper to get random item from array
+function getRandomItem<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
 const initialMeters: Meters = {
   publicPatience: 100,
   chaos: 0,
@@ -36,7 +49,8 @@ const initialMeters: Meters = {
 export default function Home() {
   const [started, setStarted] = useState(false);
   const [round, setRound] = useState(0);
-  const [problemIndex, setProblemIndex] = useState(0);
+  const [problemIndex, setProblemIndex] = useState(() => getRandomIndex(PROBLEMS.length));
+  const [usedProblems, setUsedProblems] = useState<number[]>([]);
   const [officialLine, setOfficialLine] = useState("সিস্টেম প্রস্তুত। অ্যাডজাস্ট দিন।");
   const [publicLine, setPublicLine] = useState("জনগণের ধৈর্য স্থিতিশীল।");
   const [log, setLog] = useState<LogEntry[]>([]);
@@ -47,7 +61,7 @@ export default function Home() {
   const problem = useMemo(() => PROBLEMS[problemIndex], [problemIndex]);
   const escalationLevel = clamp(Math.floor(round / 2), 0, 3);
   const problemText = problem.escalations[escalationLevel] ?? problem.base;
-  const memoText = SYSTEM_MEMOS[round % SYSTEM_MEMOS.length];
+  const memoText = getRandomItem(SYSTEM_MEMOS);
 
   const chaosTone = useMemo(() => {
     if (meters.chaos > 70) return "tracking-[0.28em]";
@@ -75,14 +89,13 @@ export default function Home() {
       meters.announcementCount + (action.tag === "announce" ? 1 : 0);
     const silentCount = meters.silentCount + (action.tag === "silent" ? 1 : 0);
 
-    const nextProblemIndex =
-      (problemIndex + 1 + (newChaos > 60 ? 1 : 0)) % PROBLEMS.length;
+    // Get next random problem, avoiding recently used ones
+    const recentlyUsed = [...usedProblems, problemIndex].slice(-Math.min(10, PROBLEMS.length - 1));
+    const nextProblemIndex = getRandomIndex(PROBLEMS.length, recentlyUsed);
 
     const adjustSuffix = newChaos > 55 ? " অ্যাডজাস্ট। অ্যাডজাস্ট।" : "";
-    const officialMessage =
-      OFFICIAL_LINES[nextRound % OFFICIAL_LINES.length] + adjustSuffix;
-    const publicMessage =
-      PUBLIC_REACTIONS[nextRound % PUBLIC_REACTIONS.length];
+    const officialMessage = getRandomItem(OFFICIAL_LINES) + adjustSuffix;
+    const publicMessage = getRandomItem(PUBLIC_REACTIONS);
 
     const nextEnding = resolveEnding({
       round: nextRound,
@@ -114,13 +127,15 @@ export default function Home() {
     ]);
     setRound(nextRound);
     setProblemIndex(nextProblemIndex);
+    setUsedProblems((prev) => [...prev, problemIndex].slice(-10));
     setEnding(nextEnding);
   };
 
   const resetGame = () => {
     setStarted(false);
     setRound(0);
-    setProblemIndex(0);
+    setProblemIndex(getRandomIndex(PROBLEMS.length));
+    setUsedProblems([]);
     setOfficialLine("সিস্টেম প্রস্তুত। অ্যাডজাস্ট দিন।");
     setPublicLine("জনগণের ধৈর্য স্থিতিশীল।");
     setLog([]);
@@ -154,6 +169,7 @@ export default function Home() {
               <AdjustmentGrid
                 onAdjust={handleAdjustment}
                 disabled={Boolean(ending)}
+                round={round}
               />
             </ProblemPanel>
             <SidePanel>
