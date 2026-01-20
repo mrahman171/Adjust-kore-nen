@@ -70,7 +70,7 @@ export default function Home() {
   }, [meters.chaos]);
 
   const chaosTilt = (meters.chaos / 100) * 2 - 1;
-  const { score, breakdown } = calculateScoreDetails(meters);
+  const { score, breakdown, detailedBreakdown } = calculateScoreDetails(meters);
 
   const handleAdjustment = (action: Adjustment) => {
     if (ending) return;
@@ -201,7 +201,13 @@ export default function Home() {
           <EndingModal
             ending={ending}
             score={score}
-            breakdown={breakdown}
+            breakdown={detailedBreakdown}
+            stats={{
+              rounds: round,
+              adjustmentCount: meters.adjustmentCount,
+              committeeCount: meters.committeeCount,
+              announcementCount: meters.announcementCount,
+            }}
             onRestart={resetGame}
           />
         ) : null}

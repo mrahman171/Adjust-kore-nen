@@ -20,6 +20,8 @@ export type LogEntry = {
 export type Ending = {
   title: string;
   message: string;
+  grade?: string;
+  subtitle?: string;
 };
 
 export type Meters = {

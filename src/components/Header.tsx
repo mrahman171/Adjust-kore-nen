@@ -20,7 +20,7 @@ export function Header({ title, subtitle }: Props) {
       </div>
       <div className="flex flex-col gap-4">
         <p className="font-display text-sm text-[var(--accent)]">
-          ব্যুরোক্রেসি সিমুলেটর ২০২৫
+          ব্যুরোক্রেসি সিমুলেটর ২০২৬
         </p>
         <div className="flex flex-col gap-2">
           <h1 className="text-4xl sm:text-5xl">{title}</h1>
