@@ -31,6 +31,7 @@ export type Meters = {
   chaos: number;
   mediaNoise: number;
   adjustmentCount: number;
+  correctAdjustmentCount: number;
   committeeCount: number;
   announcementCount: number;
   silentCount: number;

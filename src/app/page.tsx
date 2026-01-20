@@ -41,6 +41,7 @@ const initialMeters: Meters = {
   chaos: 0,
   mediaNoise: 0,
   adjustmentCount: 0,
+  correctAdjustmentCount: 0,
   committeeCount: 0,
   announcementCount: 0,
   silentCount: 0,
@@ -80,7 +81,9 @@ export default function Home() {
     const newChaos = clamp(meters.chaos + chaosIncrease, 0, 100);
 
     // Check if this is a proper adjustment for the current problem
-    const isProperAdjustment = problem.correctTags?.includes(action.tag) ?? false;
+    const isProperAdjustment = problem.adjustment
+      ? action.label === problem.adjustment
+      : problem.correctTags?.includes(action.tag) ?? false;
 
     // If proper adjustment, increase patience; otherwise decrease
     const patienceChange = isProperAdjustment
@@ -117,6 +120,8 @@ export default function Home() {
       chaos: newChaos,
       mediaNoise: newNoise,
       adjustmentCount: meters.adjustmentCount + 1,
+      correctAdjustmentCount:
+        meters.correctAdjustmentCount + (isProperAdjustment ? 1 : 0),
       committeeCount,
       announcementCount,
       silentCount,
@@ -178,6 +183,7 @@ export default function Home() {
                 disabled={Boolean(ending)}
                 round={round}
                 correctTags={problem.correctTags}
+                correctAdjustmentLabel={problem.adjustment}
               />
             </ProblemPanel>
             <SidePanel>

@@ -7,41 +7,48 @@ type Props = {
   disabled?: boolean;
   round?: number;
   correctTags?: ("committee" | "announce" | "delay" | "blame" | "investigate" | "silent")[];
+  correctAdjustmentLabel?: string;
 };
 
-// Get 4 random adjustments, mixing correct and incorrect tags for balance
+// Get 4 random adjustments, always include the correct label when provided
 function getRandomAdjustments(
-  correctTags?: ("committee" | "announce" | "delay" | "blame" | "investigate" | "silent")[]
+  correctTags?: ("committee" | "announce" | "delay" | "blame" | "investigate" | "silent")[],
+  correctAdjustmentLabel?: string
 ): Adjustment[] {
-  const hasTags = Boolean(correctTags && correctTags.length > 0);
-  const correctPool = hasTags
-    ? ADJUSTMENTS.filter((adj) => correctTags!.includes(adj.tag))
-    : ADJUSTMENTS;
-  const wrongPool = hasTags
-    ? ADJUSTMENTS.filter((adj) => !correctTags!.includes(adj.tag))
-    : [];
-
   const shuffle = (items: Adjustment[]) =>
     [...items].sort(() => Math.random() - 0.5);
 
   const selected: Adjustment[] = [];
-  const correctPick = hasTags ? 1 : 4;
-  const wrongPick = hasTags ? 3 : 0;
 
-  selected.push(...shuffle(correctPool).slice(0, correctPick));
-  selected.push(...shuffle(wrongPool).slice(0, wrongPick));
-
-  if (selected.length < 4) {
-    const fallback = shuffle(ADJUSTMENTS.filter((adj) => !selected.includes(adj)));
-    selected.push(...fallback.slice(0, 4 - selected.length));
+  if (correctAdjustmentLabel) {
+    const match = ADJUSTMENTS.find((adj) => adj.label === correctAdjustmentLabel);
+    if (match) selected.push(match);
+  } else if (correctTags && correctTags.length > 0) {
+    const correctPool = ADJUSTMENTS.filter((adj) => correctTags.includes(adj.tag));
+    selected.push(...shuffle(correctPool).slice(0, 1));
   }
+
+  const uniqueByLabel = new Set(selected.map((adj) => adj.label));
+  const fallback = shuffle(
+    ADJUSTMENTS.filter((adj) => !uniqueByLabel.has(adj.label))
+  );
+  selected.push(...fallback.slice(0, Math.max(0, 4 - selected.length)));
 
   return shuffle(selected);
 }
 
-export function AdjustmentGrid({ onAdjust, disabled, round, correctTags }: Props) {
+export function AdjustmentGrid({
+  onAdjust,
+  disabled,
+  round,
+  correctTags,
+  correctAdjustmentLabel,
+}: Props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const options = useMemo(() => getRandomAdjustments(correctTags), [round, correctTags]);
+  const options = useMemo(
+    () => getRandomAdjustments(correctTags, correctAdjustmentLabel),
+    [round, correctTags, correctAdjustmentLabel]
+  );
 
   return (
     <div className="mt-6 grid gap-3 sm:grid-cols-2">

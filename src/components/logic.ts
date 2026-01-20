@@ -5,7 +5,9 @@ export const clamp = (value: number, min: number, max: number) =>
 
 export const calculateScore = (meters: Meters) => {
   const base =
-    meters.adjustmentCount * 80 + meters.chaos * 3 + meters.mediaNoise * 2;
+    meters.correctAdjustmentCount * 80 +
+    meters.chaos * 3 +
+    meters.mediaNoise * 2;
   const bonus = meters.publicPatience;
   const penalty =
     meters.committeeCount * 25 +
@@ -15,7 +17,7 @@ export const calculateScore = (meters: Meters) => {
 };
 
 export const calculateScoreDetails = (meters: Meters) => {
-  const adjustments = meters.adjustmentCount * 80;
+  const adjustments = meters.correctAdjustmentCount * 80;
   const chaos = meters.chaos * 3;
   const media = meters.mediaNoise * 2;
   const patience = meters.publicPatience;
