@@ -8,7 +8,9 @@ export function StartPanel({ started, onStart }: Props) {
 
   return (
     <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-      <div className="relative overflow-hidden rounded-3xl border-2 border-[var(--line)] bg-[var(--paper)] p-8 shadow-[0_20px_60px_rgba(80,50,20,0.08)]">
+      <div className="relative overflow-hidden rounded-3xl panel-surface p-8">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[var(--accent)]/70 via-[var(--accent-muted)]/60 to-transparent" />
+        <div className="pointer-events-none absolute -right-16 -bottom-16 h-40 w-40 rounded-full bg-[var(--accent)]/10 blur-2xl" />
         <div className="absolute right-4 top-4 h-3 w-3 animate-pulse rounded-full bg-green-500" />
         <div className="absolute right-10 top-4 font-mono text-xs text-[var(--accent)] opacity-60">
           STANDBY MODE
@@ -35,13 +37,13 @@ export function StartPanel({ started, onStart }: Props) {
           </span>
         </div>
         <button
-          className="mt-6 rounded-full border-2 border-[var(--accent)] bg-[var(--accent)] px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:translate-y-[-2px] hover:shadow-lg hover:shadow-[var(--accent)]/20"
+          className="mt-6 rounded-full border-2 border-[var(--accent)] bg-[var(--accent)] px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:translate-y-[-2px] hover:shadow-md hover:shadow-[var(--accent)]/15"
           onClick={onStart}
         >
-          ▶ ENGAGE SYSTEM
+          ▶ গেম শুরু করুন
         </button>
       </div>
-      <div className="hidden flex-col gap-4 rounded-3xl border-2 border-dashed border-[var(--line)] bg-[var(--paper)]/50 p-6 lg:flex">
+      <div className="hidden flex-col gap-4 rounded-3xl bg-[linear-gradient(160deg,rgba(255,250,242,0.8),rgba(243,235,221,0.6))] p-6 shadow-[0_10px_28px_rgba(80,50,20,0.06)] lg:flex">
         <h3 className="text-lg font-semibold text-[var(--accent)]">অপারেশন ম্যানুয়াল</h3>
         <ul className="space-y-3 text-sm leading-relaxed">
           <li className="flex gap-2">
@@ -50,11 +52,19 @@ export function StartPanel({ started, onStart }: Props) {
           </li>
           <li className="flex gap-2">
             <span className="text-[var(--stamp)]">◉</span>
-            <span>৪টি কৌশল থেকে একটি ডিপ্লয় করুন</span>
+            <span>৪টি কৌশল থেকে একটি বেছে নিন</span>
           </li>
           <li className="flex gap-2">
             <span className="text-[var(--stamp)]">◉</span>
             <span>পাবলিক ট্রাস্ট শূন্য হলে মিশন ফেইলড</span>
+          </li>
+          <li className="flex gap-2">
+            <span className="text-[var(--stamp)]">◉</span>
+            <span>৪ রাউন্ডের পর ২ বার নীরবতা নিলে গেম শেষ</span>
+          </li>
+          <li className="flex gap-2">
+            <span className="text-[var(--stamp)]">◉</span>
+            <span>কমিটি ৪ বার বা ঘোষণা ৪ বার হলে গেম শেষ</span>
           </li>
           <li className="flex gap-2">
             <span className="text-[var(--stamp)]">◉</span>

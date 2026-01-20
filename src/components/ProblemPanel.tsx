@@ -22,15 +22,16 @@ export function ProblemPanel({
   children,
 }: Props) {
   return (
-    <div className="rounded-3xl border-2 border-[var(--line)] bg-[var(--paper)] p-8 shadow-[0_25px_70px_rgba(80,50,20,0.12)]">
+    <div className="rounded-3xl panel-surface p-8">
       <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
         <span>{roundLabel}</span>
         <span>{categoryLabel}</span>
       </div>
       <div
-        className="mt-6 rounded-2xl border border-[var(--line)] bg-[#fdfbf6] p-6"
+        className="mt-6 rounded-2xl bg-[linear-gradient(150deg,#fffaf2,#f6efe3)] p-6 shadow-[0_8px_22px_rgba(80,50,20,0.08)]"
         style={{ transform: `rotate(${chaosTilt}deg)` }}
       >
+        <div className="mb-4 h-1 w-16 rounded-full bg-[var(--accent)]/60" />
         <p className={`text-sm uppercase text-[var(--accent)] ${chaosTone}`}>
           ক্রাইসিস ব্রিফিং
         </p>

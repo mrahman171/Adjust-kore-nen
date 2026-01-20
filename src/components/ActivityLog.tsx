@@ -6,7 +6,7 @@ type Props = {
 
 export function ActivityLog({ log }: Props) {
   return (
-    <div className="rounded-3xl border-2 border-[var(--line)] bg-[var(--paper)] p-6">
+    <div className="rounded-3xl panel-surface p-6">
       <p className="text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
         সাম্প্রতিক কার্যক্রম
       </p>
@@ -17,11 +17,13 @@ export function ActivityLog({ log }: Props) {
           log.slice(0, 4).map((entry) => (
             <div
               key={entry.round}
-              className="border-b border-[var(--line)] pb-3 last:border-b-0"
+              className="rounded-2xl bg-white/70 px-4 py-3 shadow-[0_6px_18px_rgba(80,50,20,0.06)]"
             >
-              <p className="font-semibold">রাউন্ড {entry.round}</p>
-              <p className="text-[var(--ink)]/80">{entry.problem}</p>
-              <p className="text-[var(--accent)]">{entry.result}</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[var(--accent)]/70">
+                রাউন্ড {entry.round}
+              </p>
+              <p className="mt-2 font-semibold">{entry.problem}</p>
+              <p className="mt-1 text-[var(--accent)]">{entry.result}</p>
             </div>
           ))
         )}

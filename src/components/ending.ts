@@ -18,6 +18,5 @@ export const resolveEnding = ({
   if (silentCount >= 2 && round >= 4) return ENDINGS.silent;
   if (committeeCount >= 4) return ENDINGS.committee;
   if (announcementCount >= 4) return ENDINGS.press;
-  if (round >= 12) return ENDINGS.national;
   return null;
 };

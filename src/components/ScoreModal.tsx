@@ -21,7 +21,7 @@ export function ScoreModal({ score, breakdown, onContinue, onEnd }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4 py-8">
-      <section className="w-full max-w-lg rounded-3xl border-2 border-[var(--accent)] bg-[var(--paper)] shadow-[0_25px_70px_rgba(140,40,30,0.25)] max-h-[85vh] overflow-y-auto">
+      <section className="w-full max-w-lg rounded-3xl bg-[var(--paper)] shadow-[0_16px_40px_rgba(140,40,30,0.18)] max-h-[85vh] overflow-y-auto">
         {/* Header */}
         <div className="border-b border-[var(--line)] bg-gradient-to-r from-[var(--accent)]/10 to-transparent px-6 py-4 text-center sm:px-8">
           <p className="text-xs uppercase tracking-[0.3em] text-[var(--accent)]">
@@ -33,7 +33,7 @@ export function ScoreModal({ score, breakdown, onContinue, onEnd }: Props) {
         {/* Grade & Score */}
         <div className="flex flex-col items-center gap-4 px-6 py-5 sm:flex-row sm:justify-center sm:gap-6 sm:px-8">
           <div
-            className={`flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br shadow-lg ${gradeColors[gradeInfo.grade]}`}
+            className={`flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br shadow-sm ${gradeColors[gradeInfo.grade]}`}
           >
             <span className="text-4xl font-bold">{gradeInfo.grade}</span>
           </div>

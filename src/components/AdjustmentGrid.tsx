@@ -9,42 +9,34 @@ type Props = {
   correctTags?: ("committee" | "announce" | "delay" | "blame" | "investigate" | "silent")[];
 };
 
-// Get 4 random adjustments, ensuring at least one matches the correct tags for the problem
+// Get 4 random adjustments, mixing correct and incorrect tags for balance
 function getRandomAdjustments(
   correctTags?: ("committee" | "announce" | "delay" | "blame" | "investigate" | "silent")[]
 ): Adjustment[] {
-  const shuffled = [...ADJUSTMENTS].sort(() => Math.random() - 0.5);
+  const hasTags = Boolean(correctTags && correctTags.length > 0);
+  const correctPool = hasTags
+    ? ADJUSTMENTS.filter((adj) => correctTags!.includes(adj.tag))
+    : ADJUSTMENTS;
+  const wrongPool = hasTags
+    ? ADJUSTMENTS.filter((adj) => !correctTags!.includes(adj.tag))
+    : [];
+
+  const shuffle = (items: Adjustment[]) =>
+    [...items].sort(() => Math.random() - 0.5);
+
   const selected: Adjustment[] = [];
-  const usedTags = new Set<string>();
+  const correctPick = hasTags ? 1 : 4;
+  const wrongPick = hasTags ? 3 : 0;
 
-  // First pass: ensure at least one correct adjustment is included
-  if (correctTags && correctTags.length > 0) {
-    const correctAdjustments = shuffled.filter((adj) => correctTags.includes(adj.tag));
-    if (correctAdjustments.length > 0) {
-      const correctAdj = correctAdjustments[Math.floor(Math.random() * correctAdjustments.length)];
-      selected.push(correctAdj);
-      usedTags.add(correctAdj.tag);
-    }
+  selected.push(...shuffle(correctPool).slice(0, correctPick));
+  selected.push(...shuffle(wrongPool).slice(0, wrongPick));
+
+  if (selected.length < 4) {
+    const fallback = shuffle(ADJUSTMENTS.filter((adj) => !selected.includes(adj)));
+    selected.push(...fallback.slice(0, 4 - selected.length));
   }
 
-  // Second pass: try to get one from each remaining category for variety
-  for (const adj of shuffled) {
-    if (selected.length >= 4) break;
-    if (!usedTags.has(adj.tag) && !selected.includes(adj)) {
-      selected.push(adj);
-      usedTags.add(adj.tag);
-    }
-  }
-
-  // Third pass: fill remaining slots with any random ones
-  for (const adj of shuffled) {
-    if (selected.length >= 4) break;
-    if (!selected.includes(adj)) {
-      selected.push(adj);
-    }
-  }
-
-  return selected.sort(() => Math.random() - 0.5);
+  return shuffle(selected);
 }
 
 export function AdjustmentGrid({ onAdjust, disabled, round, correctTags }: Props) {
@@ -56,11 +48,12 @@ export function AdjustmentGrid({ onAdjust, disabled, round, correctTags }: Props
       {options.map((action) => (
         <button
           key={action.label}
-          className="rounded-2xl border border-[var(--line)] bg-white px-4 py-3 text-left text-sm transition hover:-translate-y-1 hover:border-[var(--accent)] disabled:opacity-50 disabled:hover:translate-y-0"
+          className="group rounded-2xl bg-[linear-gradient(160deg,#fffaf2,#f3ebdd)] px-4 py-3 text-left text-sm shadow-[0_8px_18px_rgba(80,50,20,0.08)] transition hover:-translate-y-1 hover:shadow-[0_12px_24px_rgba(80,50,20,0.1)] disabled:opacity-50 disabled:hover:translate-y-0"
           onClick={() => onAdjust(action)}
           disabled={disabled}
         >
-          <span className="font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+          <span className="inline-flex items-center gap-2 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+            <span className="h-2 w-2 rounded-full bg-[var(--accent)]/70" />
             অ্যাডজাস্ট
           </span>
           <span className="mt-1 block text-base">{action.label}</span>

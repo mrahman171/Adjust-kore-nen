@@ -5,7 +5,10 @@ type Props = {
 
 export function Header({ title, subtitle }: Props) {
   return (
-    <section className="relative overflow-hidden rounded-3xl border-2 border-[var(--line)] bg-[var(--paper)] px-6 py-8 shadow-[0_20px_60px_rgba(80,50,20,0.1)]">
+    <section className="relative overflow-hidden rounded-3xl panel-surface px-6 py-8">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(181,54,46,0.12),_transparent_60%)]" />
+      <div className="pointer-events-none absolute -right-20 -top-16 h-52 w-52 rounded-full bg-[var(--accent)]/10 blur-2xl" />
+      <div className="pointer-events-none absolute -left-24 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-[var(--accent-deep)]/10 blur-3xl" />
       <div className="absolute -right-6 top-6 rotate-12 rounded-full border-2 border-[var(--stamp)] px-6 py-3 text-xs font-semibold text-[var(--stamp)] opacity-70">
         TOP SECRET
       </div>
