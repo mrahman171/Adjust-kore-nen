@@ -33,6 +33,9 @@ export type Meters = {
   adjustmentCount: number;
   correctAdjustmentCount: number;
   committeeCount: number;
+  correctCommitteeCount: number;
   announcementCount: number;
+  correctAnnouncementCount: number;
   silentCount: number;
+  correctSilentCount: number;
 };

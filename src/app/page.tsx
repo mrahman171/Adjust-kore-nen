@@ -43,8 +43,11 @@ const initialMeters: Meters = {
   adjustmentCount: 0,
   correctAdjustmentCount: 0,
   committeeCount: 0,
+  correctCommitteeCount: 0,
   announcementCount: 0,
+  correctAnnouncementCount: 0,
   silentCount: 0,
+  correctSilentCount: 0,
 };
 
 export default function Home() {
@@ -99,6 +102,16 @@ export default function Home() {
       meters.announcementCount + (action.tag === "announce" ? 1 : 0);
     const silentCount = meters.silentCount + (action.tag === "silent" ? 1 : 0);
 
+    const correctCommitteeCount =
+      meters.correctCommitteeCount +
+      (isProperAdjustment && action.tag === "committee" ? 1 : 0);
+    const correctAnnouncementCount =
+      meters.correctAnnouncementCount +
+      (isProperAdjustment && action.tag === "announce" ? 1 : 0);
+    const correctSilentCount =
+      meters.correctSilentCount +
+      (isProperAdjustment && action.tag === "silent" ? 1 : 0);
+
     // Get next random problem, avoiding recently used ones
     const recentlyUsed = [...usedProblems, problemIndex].slice(-Math.min(10, PROBLEMS.length - 1));
     const nextProblemIndex = getRandomIndex(PROBLEMS.length, recentlyUsed);
@@ -123,8 +136,11 @@ export default function Home() {
       correctAdjustmentCount:
         meters.correctAdjustmentCount + (isProperAdjustment ? 1 : 0),
       committeeCount,
+      correctCommitteeCount,
       announcementCount,
+      correctAnnouncementCount,
       silentCount,
+      correctSilentCount,
     });
     setOfficialLine(officialMessage);
     setPublicLine(publicMessage);

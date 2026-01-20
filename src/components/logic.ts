@@ -9,10 +9,16 @@ export const calculateScore = (meters: Meters) => {
     meters.chaos * 3 +
     meters.mediaNoise * 2;
   const bonus = meters.publicPatience;
-  const penalty =
-    meters.committeeCount * 25 +
-    meters.announcementCount * 15 +
-    meters.silentCount * 35;
+  const committeePenalty =
+    (meters.committeeCount - meters.correctCommitteeCount) * 25 +
+    meters.correctCommitteeCount * 12;
+  const announcementPenalty =
+    (meters.announcementCount - meters.correctAnnouncementCount) * 15 +
+    meters.correctAnnouncementCount * 7;
+  const silentPenalty =
+    (meters.silentCount - meters.correctSilentCount) * 35 +
+    meters.correctSilentCount * 18;
+  const penalty = committeePenalty + announcementPenalty + silentPenalty;
   return Math.max(0, Math.round(base + bonus - penalty));
 };
 
@@ -21,9 +27,15 @@ export const calculateScoreDetails = (meters: Meters) => {
   const chaos = meters.chaos * 3;
   const media = meters.mediaNoise * 2;
   const patience = meters.publicPatience;
-  const committees = meters.committeeCount * 25;
-  const announcements = meters.announcementCount * 15;
-  const silent = meters.silentCount * 35;
+  const committees =
+    (meters.committeeCount - meters.correctCommitteeCount) * 25 +
+    meters.correctCommitteeCount * 12;
+  const announcements =
+    (meters.announcementCount - meters.correctAnnouncementCount) * 15 +
+    meters.correctAnnouncementCount * 7;
+  const silent =
+    (meters.silentCount - meters.correctSilentCount) * 35 +
+    meters.correctSilentCount * 18;
 
   const score = Math.max(
     0,
