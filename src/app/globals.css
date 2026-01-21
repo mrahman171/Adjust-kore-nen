@@ -14,6 +14,9 @@
   --line: #d5c7b2;
   --line-strong: #c5b49b;
   --panel-shadow: 0 14px 40px rgba(80, 50, 20, 0.08);
+  --glass-bg: rgba(255, 250, 245, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glow-accent: rgba(181, 54, 46, 0.15);
 }
 
 @theme inline {
@@ -57,6 +60,7 @@ body::before {
     rgba(181, 54, 46, 0.22),
     rgba(181, 54, 46, 0)
   );
+  animation: float-slow 20s ease-in-out infinite;
 }
 
 body::after {
@@ -67,17 +71,45 @@ body::after {
     rgba(20, 60, 90, 0.18),
     rgba(20, 60, 90, 0)
   );
+  animation: float-slow 25s ease-in-out infinite reverse;
 }
 
+/* Panel styles with glassmorphism */
 .panel-surface {
   background: linear-gradient(140deg, var(--paper-soft), var(--paper));
-  border: 0;
-  box-shadow: var(--panel-shadow);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    var(--panel-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .panel-surface-quiet {
   background: linear-gradient(160deg, var(--paper-strong), var(--paper));
-  border: 0;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Glass card effect */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 8px 32px rgba(80, 50, 20, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Glow effects */
+.glow-accent {
+  box-shadow: 0 0 20px var(--glow-accent), 0 0 40px var(--glow-accent);
+}
+
+.glow-accent-soft {
+  box-shadow: 0 4px 20px var(--glow-accent);
 }
 
 h1,
@@ -92,4 +124,213 @@ h3,
 ::selection {
   background: var(--accent);
   color: #fff6ea;
+}
+
+/* Animations */
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-10px, 15px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--glow-accent), 0 0 10px var(--glow-accent);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 15px var(--glow-accent), 0 0 30px var(--glow-accent);
+    opacity: 0.8;
+  }
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes scale-in {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes border-pulse {
+  0%, 100% { border-color: var(--accent); }
+  50% { border-color: var(--accent-muted); }
+}
+
+@keyframes text-glow {
+  0%, 100% { text-shadow: 0 0 10px var(--glow-accent); }
+  50% { text-shadow: 0 0 20px var(--glow-accent), 0 0 30px var(--glow-accent); }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.animate-border-pulse {
+  animation: border-pulse 2s ease-in-out infinite;
+}
+
+.animate-text-glow {
+  animation: text-glow 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(80, 50, 20, 0.12);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 25px var(--glow-accent);
+}
+
+/* Progress bar animation */
+.progress-bar-animated {
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-animated::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Badge styles */
+.badge-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-deep) 100%);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  box-shadow: 0 2px 8px var(--glow-accent);
+}
+
+/* Decorative borders */
+.border-gradient {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--paper), var(--paper)) padding-box,
+    linear-gradient(135deg, var(--accent) 0%, var(--accent-muted) 100%) border-box;
+}
+
+/* Stamp effect */
+.stamp-effect {
+  border: 3px solid var(--stamp);
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--stamp);
+  opacity: 0.8;
+  transform: rotate(-5deg);
+  box-shadow:
+    inset 0 0 0 1px var(--stamp),
+    0 4px 12px rgba(203, 59, 51, 0.15);
+}
+
+/* Card hover interactions */
+.interactive-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.interactive-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 12px 28px rgba(80, 50, 20, 0.12);
+}
+
+.interactive-card:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper-strong);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-muted);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Focus states */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }

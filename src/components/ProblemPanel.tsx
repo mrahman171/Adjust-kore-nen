@@ -1,4 +1,4 @@
-﻿type Props = {
+type Props = {
   roundLabel: string;
   categoryLabel: string;
   crisisText: string;
@@ -21,28 +21,110 @@ export function ProblemPanel({
   chaosTilt,
   children,
 }: Props) {
+  // Escalation color based on level
+  const escalationColor =
+    escalationLevel >= 4
+      ? "from-red-500 to-rose-600"
+      : escalationLevel >= 3
+      ? "from-orange-500 to-amber-600"
+      : escalationLevel >= 2
+      ? "from-yellow-500 to-amber-500"
+      : "from-green-500 to-emerald-600";
+
+  const escalationBg =
+    escalationLevel >= 4
+      ? "bg-red-500/10"
+      : escalationLevel >= 3
+      ? "bg-orange-500/10"
+      : escalationLevel >= 2
+      ? "bg-yellow-500/10"
+      : "bg-green-500/10";
+
   return (
-    <div className="rounded-3xl panel-surface p-8">
-      <div className="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-[var(--accent)]">
-        <span>{roundLabel}</span>
-        <span>{categoryLabel}</span>
+    <div className="relative overflow-hidden rounded-3xl panel-surface p-6 sm:p-8">
+      {/* Background decorations */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(181,54,46,0.08),_transparent_50%)]" />
+      <div className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-[var(--accent)]/10 blur-3xl" />
+
+      {/* Top accent line */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[var(--accent)] via-[var(--accent-muted)] to-transparent" />
+
+      {/* Header row */}
+      <div className="relative flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--accent)] to-[var(--accent-deep)] text-white shadow-lg shadow-[var(--accent)]/20">
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+              {roundLabel}
+            </span>
+            <p className="text-[0.6rem] text-[var(--ink)]/50 uppercase tracking-wider">{categoryLabel}</p>
+          </div>
+        </div>
+
+        {/* Escalation indicator */}
+        <div className={`flex items-center gap-2 rounded-full ${escalationBg} px-3 py-1.5 backdrop-blur-sm`}>
+          <div className="flex gap-1">
+            {Array.from({ length: escalationTotal }).map((_, i) => (
+              <div
+                key={i}
+                className={`h-2 w-2 rounded-full transition-all ${
+                  i < escalationLevel
+                    ? `bg-gradient-to-br ${escalationColor}`
+                    : "bg-gray-300"
+                }`}
+              />
+            ))}
+          </div>
+          <span className="text-[0.6rem] font-semibold uppercase tracking-wider text-[var(--ink)]/60">
+            LV.{escalationLevel}
+          </span>
+        </div>
       </div>
+
+      {/* Crisis card with dynamic tilt */}
       <div
-        className="mt-6 rounded-2xl bg-[linear-gradient(150deg,#fffaf2,#f6efe3)] p-6 shadow-[0_8px_22px_rgba(80,50,20,0.08)]"
+        className="relative mt-6 overflow-hidden rounded-2xl border border-white/50 bg-gradient-to-br from-white/90 via-[var(--paper-soft)] to-[var(--paper-strong)]/80 p-6 shadow-xl shadow-[rgba(80,50,20,0.1)] backdrop-blur-sm transition-transform duration-300"
         style={{ transform: `rotate(${chaosTilt}deg)` }}
       >
-        <div className="mb-4 h-1 w-16 rounded-full bg-[var(--accent)]/60" />
-        <p className={`text-sm uppercase text-[var(--accent)] ${chaosTone}`}>
-          ক্রাইসিস ব্রিফিং
-        </p>
-        <h2 className="mt-2 text-2xl sm:text-3xl">{crisisText}</h2>
-        <p className="mt-4 text-sm text-[var(--ink)]/70">
-          এস্কেলেশন লেভেল: {escalationLevel} / {escalationTotal}
-        </p>
-        <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[var(--accent)]/70">
-          {memoText}
-        </p>
+        {/* Top accent bar */}
+        <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${escalationColor}`} />
+
+        {/* Decorative corner */}
+        <div className="pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[var(--accent)]/10 blur-xl" />
+
+        {/* Header accent */}
+        <div className="mb-4 flex items-center gap-3">
+          <div className={`h-1 w-16 rounded-full bg-gradient-to-r ${escalationColor}`} />
+          <p className={`text-xs font-bold uppercase text-[var(--accent)] ${chaosTone}`}>
+            ক্রাইসিস ব্রিফিং
+          </p>
+        </div>
+
+        {/* Main crisis text */}
+        <h2 className="text-2xl leading-tight sm:text-3xl">{crisisText}</h2>
+
+        {/* Footer info */}
+        <div className="mt-5 flex flex-wrap items-center gap-4 border-t border-[var(--line)]/50 pt-4">
+          <div className="flex items-center gap-2">
+            <div className={`flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br ${escalationColor} text-white text-xs font-bold`}>
+              {escalationLevel}
+            </div>
+            <span className="text-sm text-[var(--ink)]/70">
+              এস্কেলেশন লেভেল {escalationLevel}/{escalationTotal}
+            </span>
+          </div>
+          <div className="h-4 w-px bg-[var(--line)]" />
+          <p className={`text-xs uppercase tracking-[0.15em] text-[var(--accent)]/70 ${chaosTone}`}>
+            {memoText}
+          </p>
+        </div>
       </div>
+
+      {/* Action buttons section */}
       {children}
     </div>
   );
