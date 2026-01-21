@@ -48,6 +48,16 @@ const initialMeters: Meters = {
   correctAnnouncementCount: 0,
   silentCount: 0,
   correctSilentCount: 0,
+  delayCount: 0,
+  correctDelayCount: 0,
+  blameCount: 0,
+  correctBlameCount: 0,
+  investigateCount: 0,
+  correctInvestigateCount: 0,
+  streak: 0,
+  maxStreak: 0,
+  totalPatienceGained: 0,
+  totalPatienceLost: 0,
 };
 
 export default function Home() {
@@ -74,7 +84,7 @@ export default function Home() {
   }, [meters.chaos]);
 
   const chaosTilt = (meters.chaos / 100) * 2 - 1;
-  const { score, breakdown, detailedBreakdown } = calculateScoreDetails(meters);
+  const { score, breakdown, detailedBreakdown, professional, metrics, strategies } = calculateScoreDetails(meters);
 
   const handleAdjustment = (action: Adjustment) => {
     if (ending) return;
@@ -96,12 +106,18 @@ export default function Home() {
     const noiseIncrease = 6 + (action.tag === "announce" ? 10 : 0);
     const newNoise = clamp(meters.mediaNoise + noiseIncrease, 0, 100);
 
+    // Track all strategy counts
     const committeeCount =
       meters.committeeCount + (action.tag === "committee" ? 1 : 0);
     const announcementCount =
       meters.announcementCount + (action.tag === "announce" ? 1 : 0);
     const silentCount = meters.silentCount + (action.tag === "silent" ? 1 : 0);
+    const delayCount = meters.delayCount + (action.tag === "delay" ? 1 : 0);
+    const blameCount = meters.blameCount + (action.tag === "blame" ? 1 : 0);
+    const investigateCount =
+      meters.investigateCount + (action.tag === "investigate" ? 1 : 0);
 
+    // Track correct strategy counts
     const correctCommitteeCount =
       meters.correctCommitteeCount +
       (isProperAdjustment && action.tag === "committee" ? 1 : 0);
@@ -111,6 +127,23 @@ export default function Home() {
     const correctSilentCount =
       meters.correctSilentCount +
       (isProperAdjustment && action.tag === "silent" ? 1 : 0);
+    const correctDelayCount =
+      meters.correctDelayCount +
+      (isProperAdjustment && action.tag === "delay" ? 1 : 0);
+    const correctBlameCount =
+      meters.correctBlameCount +
+      (isProperAdjustment && action.tag === "blame" ? 1 : 0);
+    const correctInvestigateCount =
+      meters.correctInvestigateCount +
+      (isProperAdjustment && action.tag === "investigate" ? 1 : 0);
+
+    // Track streak
+    const newStreak = isProperAdjustment ? meters.streak + 1 : 0;
+    const newMaxStreak = Math.max(meters.maxStreak, newStreak);
+
+    // Track patience changes
+    const patienceGained = patienceChange > 0 ? patienceChange : 0;
+    const patienceLost = patienceChange < 0 ? Math.abs(patienceChange) : 0;
 
     // Get next random problem, avoiding recently used ones
     const recentlyUsed = [...usedProblems, problemIndex].slice(-Math.min(10, PROBLEMS.length - 1));
@@ -141,6 +174,16 @@ export default function Home() {
       correctAnnouncementCount,
       silentCount,
       correctSilentCount,
+      delayCount,
+      correctDelayCount,
+      blameCount,
+      correctBlameCount,
+      investigateCount,
+      correctInvestigateCount,
+      streak: newStreak,
+      maxStreak: newMaxStreak,
+      totalPatienceGained: meters.totalPatienceGained + patienceGained,
+      totalPatienceLost: meters.totalPatienceLost + patienceLost,
     });
     setOfficialLine(officialMessage);
     setPublicLine(publicMessage);
@@ -212,7 +255,7 @@ export default function Home() {
                 officialLine={officialLine}
                 publicLine={publicLine}
               />
-              <Dossier meters={meters} />
+              <Dossier meters={meters} metrics={metrics} strategies={strategies} />
               <ActivityLog log={log} />
             </SidePanel>
           </section>
@@ -238,6 +281,9 @@ export default function Home() {
               committeeCount: meters.committeeCount,
               announcementCount: meters.announcementCount,
             }}
+            professional={professional}
+            metrics={metrics}
+            strategies={strategies}
             onRestart={resetGame}
           />
         ) : null}

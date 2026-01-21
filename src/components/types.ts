@@ -38,4 +38,57 @@ export type Meters = {
   correctAnnouncementCount: number;
   silentCount: number;
   correctSilentCount: number;
+  // Professional metrics
+  delayCount: number;
+  correctDelayCount: number;
+  blameCount: number;
+  correctBlameCount: number;
+  investigateCount: number;
+  correctInvestigateCount: number;
+  streak: number;
+  maxStreak: number;
+  totalPatienceGained: number;
+  totalPatienceLost: number;
+};
+
+// Professional analytics types
+export type StrategyStats = {
+  tag: string;
+  label: string;
+  total: number;
+  correct: number;
+  accuracy: number;
+};
+
+export type PerformanceMetrics = {
+  accuracyRate: number;
+  efficiencyIndex: number;
+  strategyDiversity: number;
+  streakBonus: number;
+  stabilityScore: number;
+  riskFactor: number;
+};
+
+export type DetailedBreakdown = {
+  base: {
+    adjustments: number;
+    chaos: number;
+    media: number;
+    patience: number;
+  };
+  bonuses: {
+    streak: number;
+    accuracy: number;
+    efficiency: number;
+    diversity: number;
+  };
+  penalties: {
+    committees: number;
+    announcements: number;
+    silent: number;
+    delay: number;
+    blame: number;
+    investigate: number;
+  };
+  total: number;
 };
