@@ -158,45 +158,68 @@ export function Tutorial({ isActive, onComplete, onSkip }: TutorialProps) {
   const step = TUTORIAL_STEPS[currentStep];
   const progress = ((currentStep + 1) / TUTORIAL_STEPS.length) * 100;
 
-  // Calculate tooltip position
+  // Calculate tooltip position with mobile-friendly adjustments
   const getTooltipStyle = (): React.CSSProperties => {
-    if (!targetRect || step.position === "center") {
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+
+    // On mobile, always center the tooltip for better UX
+    if (isMobile || !targetRect || step.position === "center") {
       return {
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
+        maxWidth: "calc(100vw - 32px)",
       };
     }
 
     const padding = 20;
     const tooltipWidth = 320;
     const tooltipHeight = 200;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    // Calculate base position
+    let top: number;
+    let left: number;
+    let transform = "";
 
     switch (step.position) {
       case "top":
-        return {
-          top: targetRect.top - tooltipHeight - padding,
-          left: targetRect.left + targetRect.width / 2,
-          transform: "translateX(-50%)",
-        };
+        top = targetRect.top - tooltipHeight - padding;
+        left = targetRect.left + targetRect.width / 2;
+        transform = "translateX(-50%)";
+        // If tooltip would go above viewport, position below instead
+        if (top < padding) {
+          top = targetRect.bottom + padding;
+        }
+        break;
       case "bottom":
-        return {
-          top: targetRect.bottom + padding,
-          left: targetRect.left + targetRect.width / 2,
-          transform: "translateX(-50%)",
-        };
+        top = targetRect.bottom + padding;
+        left = targetRect.left + targetRect.width / 2;
+        transform = "translateX(-50%)";
+        // If tooltip would go below viewport, position above instead
+        if (top + tooltipHeight > viewportHeight - padding) {
+          top = targetRect.top - tooltipHeight - padding;
+        }
+        break;
       case "left":
-        return {
-          top: targetRect.top + targetRect.height / 2,
-          left: targetRect.left - tooltipWidth - padding,
-          transform: "translateY(-50%)",
-        };
+        top = targetRect.top + targetRect.height / 2;
+        left = targetRect.left - tooltipWidth - padding;
+        transform = "translateY(-50%)";
+        // If tooltip would go off left side, position on right instead
+        if (left < padding) {
+          left = targetRect.right + padding;
+        }
+        break;
       case "right":
-        return {
-          top: targetRect.top + targetRect.height / 2,
-          left: targetRect.right + padding,
-          transform: "translateY(-50%)",
-        };
+        top = targetRect.top + targetRect.height / 2;
+        left = targetRect.right + padding;
+        transform = "translateY(-50%)";
+        // If tooltip would go off right side, position on left instead
+        if (left + tooltipWidth > viewportWidth - padding) {
+          left = targetRect.left - tooltipWidth - padding;
+        }
+        break;
       default:
         return {
           top: "50%",
@@ -204,6 +227,18 @@ export function Tutorial({ isActive, onComplete, onSkip }: TutorialProps) {
           transform: "translate(-50%, -50%)",
         };
     }
+
+    // Clamp horizontal position to viewport
+    const adjustedLeft = Math.max(padding, Math.min(left, viewportWidth - tooltipWidth - padding));
+
+    // Clamp vertical position to viewport
+    const adjustedTop = Math.max(padding, Math.min(top, viewportHeight - tooltipHeight - padding));
+
+    return {
+      top: adjustedTop,
+      left: adjustedLeft,
+      transform: left !== adjustedLeft ? "" : transform,
+    };
   };
 
   return createPortal(
@@ -226,10 +261,10 @@ export function Tutorial({ isActive, onComplete, onSkip }: TutorialProps) {
 
       {/* Tutorial tooltip */}
       <div
-        className="absolute w-80 max-w-[90vw] animate-tooltip"
+        className="absolute w-80 max-w-[calc(100vw-32px)] animate-tooltip"
         style={getTooltipStyle()}
       >
-        <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-[var(--paper)] to-[var(--paper-strong)] p-6 shadow-2xl">
+        <div className="rounded-2xl border border-white/20 bg-gradient-to-br from-[var(--paper)] to-[var(--paper-strong)] p-4 sm:p-6 shadow-2xl">
           {/* Progress bar */}
           <div className="mb-4 h-1 w-full rounded-full bg-gray-200 overflow-hidden">
             <div
@@ -261,16 +296,16 @@ export function Tutorial({ isActive, onComplete, onSkip }: TutorialProps) {
           <div className="flex items-center justify-between gap-2">
             <button
               onClick={onSkip}
-              className="px-3 py-2 text-xs font-medium text-[var(--ink)]/50 hover:text-[var(--ink)] transition-colors"
+              className="px-2 py-2 text-[10px] sm:text-xs font-medium text-[var(--ink)]/50 hover:text-[var(--ink)] active:text-[var(--ink)] transition-colors"
             >
               এড়িয়ে যান
             </button>
 
-            <div className="flex gap-2">
+            <div className="flex gap-1.5 sm:gap-2">
               {currentStep > 0 && (
                 <button
                   onClick={prevStep}
-                  className="px-4 py-2 text-xs font-semibold text-[var(--ink)]/70 hover:text-[var(--ink)] border border-[var(--line)] rounded-lg hover:bg-white/50 transition-all"
+                  className="px-3 py-2 text-[10px] sm:text-xs font-semibold text-[var(--ink)]/70 hover:text-[var(--ink)] active:text-[var(--ink)] border border-[var(--line)] rounded-lg hover:bg-white/50 active:bg-white/50 transition-all"
                 >
                   ← আগে
                 </button>
@@ -278,7 +313,7 @@ export function Tutorial({ isActive, onComplete, onSkip }: TutorialProps) {
 
               <button
                 onClick={nextStep}
-                className="px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] rounded-lg hover:opacity-90 transition-opacity shadow-md"
+                className="px-3 sm:px-4 py-2 text-[10px] sm:text-xs font-bold text-white bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] rounded-lg hover:opacity-90 active:opacity-80 transition-opacity shadow-md"
               >
                 {currentStep === TUTORIAL_STEPS.length - 1 ? "শুরু করুন!" : "পরবর্তী →"}
               </button>
@@ -373,16 +408,16 @@ export function QuickTip({
   if (!mounted) return null;
 
   return createPortal(
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 animate-slide-in-bottom">
-      <div className="flex items-center gap-3 rounded-xl border border-[var(--accent)]/30 bg-gradient-to-r from-amber-50 to-orange-50 px-4 py-3 shadow-lg">
-        <span className="text-xl">💡</span>
-        <div>
-          <p className="text-sm font-medium text-[var(--ink)]">{tipBn}</p>
-          <p className="text-xs text-[var(--ink)]/50">{tip}</p>
+    <div className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 animate-slide-in-bottom w-[calc(100%-24px)] max-w-md sm:bottom-4 sm:w-auto">
+      <div className="flex items-center gap-2 sm:gap-3 rounded-xl border border-[var(--accent)]/30 bg-gradient-to-r from-amber-50 to-orange-50 px-3 py-2.5 sm:px-4 sm:py-3 shadow-lg">
+        <span className="text-lg sm:text-xl">💡</span>
+        <div className="flex-1 min-w-0">
+          <p className="text-xs sm:text-sm font-medium text-[var(--ink)] truncate">{tipBn}</p>
+          <p className="text-[10px] sm:text-xs text-[var(--ink)]/50 truncate">{tip}</p>
         </div>
         <button
           onClick={onDismiss}
-          className="ml-2 p-1 text-[var(--ink)]/40 hover:text-[var(--ink)] transition-colors"
+          className="ml-1 sm:ml-2 p-1 text-[var(--ink)]/40 hover:text-[var(--ink)] active:text-[var(--ink)] transition-colors flex-shrink-0"
         >
           ✕
         </button>

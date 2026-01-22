@@ -335,6 +335,42 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
+/* Touch optimizations for mobile */
+button,
+a,
+.interactive-card {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent text selection on interactive elements */
+button,
+.interactive-card {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Text overflow safety for Bengali text */
+.break-words {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Ensure proper text wrapping on small screens */
+@media (max-width: 640px) {
+  h1, h2, h3, p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  /* Hide scrollbar on mobile for cleaner UI */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+}
+
 /* ===== NEW VISUAL EFFECTS ANIMATIONS ===== */
 
 /* Screen shake animation */

@@ -728,7 +728,7 @@ export const PROBLEMS: Problem[] = [
     ],
   },
   {
-    adjustment: "দোয়া করুন",
+    adjustment: "ফাইল পুনরায় যাচাইয়ের আশ্বাস দিন",
     category: "সরকারি অফিস",
     base: "সরকারি কাজে গেছেন। 'সংশ্লিষ্ট ব্যক্তি নেই'।",
     escalations: [

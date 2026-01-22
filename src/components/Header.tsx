@@ -5,25 +5,25 @@ type Props = {
 
 export function Header({ title, subtitle }: Props) {
   return (
-    <section className="relative overflow-hidden rounded-3xl panel-surface px-6 py-10 sm:px-10 sm:py-12">
+    <section className="relative overflow-hidden rounded-3xl panel-surface px-4 py-8 sm:px-10 sm:py-12">
       {/* Animated background gradients */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(181,54,46,0.15),_transparent_50%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(127,31,24,0.1),_transparent_50%)]" />
 
-      {/* Decorative orbs */}
-      <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gradient-to-br from-[var(--accent)]/20 to-transparent blur-3xl" />
-      <div className="pointer-events-none absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[var(--accent-deep)]/15 to-transparent blur-3xl" />
+      {/* Decorative orbs - hidden on mobile to prevent overflow */}
+      <div className="pointer-events-none absolute -right-20 -top-20 hidden h-64 w-64 rounded-full bg-gradient-to-br from-[var(--accent)]/20 to-transparent blur-3xl sm:block" />
+      <div className="pointer-events-none absolute -left-24 top-1/2 hidden h-72 w-72 -translate-y-1/2 rounded-full bg-gradient-to-tr from-[var(--accent-deep)]/15 to-transparent blur-3xl sm:block" />
       <div className="pointer-events-none absolute bottom-0 right-1/4 h-40 w-40 rounded-full bg-[var(--accent-muted)]/10 blur-2xl" />
 
       {/* Top accent line with shimmer */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-60" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-1 animate-shimmer" />
 
-      {/* Stamps with improved styling */}
-      <div className="absolute -right-4 top-8 rotate-12 rounded-lg border-2 border-[var(--stamp)] bg-[var(--stamp)]/5 px-5 py-2.5 text-xs font-bold tracking-wider text-[var(--stamp)] shadow-lg shadow-[var(--stamp)]/10 backdrop-blur-sm sm:right-6">
+      {/* Stamps with improved styling - adjusted for mobile */}
+      <div className="absolute right-2 top-8 rotate-12 rounded-lg border-2 border-[var(--stamp)] bg-[var(--stamp)]/5 px-3 py-1.5 text-[0.6rem] font-bold tracking-wider text-[var(--stamp)] shadow-lg shadow-[var(--stamp)]/10 backdrop-blur-sm sm:right-6 sm:px-5 sm:py-2.5 sm:text-xs">
         TOP SECRET
       </div>
-      <div className="absolute -left-6 bottom-6 rotate-[-8deg] rounded-lg border-2 border-[var(--accent)] bg-[var(--accent)]/5 px-4 py-2 text-[0.65rem] font-bold tracking-wider text-[var(--accent)] shadow-lg shadow-[var(--accent)]/10 backdrop-blur-sm sm:left-6">
+      <div className="absolute -left-2 bottom-6 rotate-[-8deg] rounded-lg border-2 border-[var(--accent)] bg-[var(--accent)]/5 px-3 py-1.5 text-[0.55rem] font-bold tracking-wider text-[var(--accent)] shadow-lg shadow-[var(--accent)]/10 backdrop-blur-sm sm:left-6 sm:px-4 sm:py-2 sm:text-[0.65rem]">
         CLASSIFIED
       </div>
 
@@ -50,10 +50,10 @@ export function Header({ title, subtitle }: Props) {
 
         {/* Title with gradient effect */}
         <div className="flex flex-col gap-3">
-          <h1 className="text-4xl tracking-wider sm:text-5xl lg:text-6xl">
+          <h1 className="text-3xl tracking-wider sm:text-4xl md:text-5xl lg:text-6xl">
             <span className="gradient-text">{title}</span>
           </h1>
-          <p className="max-w-2xl text-base leading-relaxed text-[var(--ink)]/80 sm:text-lg">
+          <p className="max-w-2xl text-sm leading-relaxed text-[var(--ink)]/80 sm:text-base md:text-lg">
             {subtitle}
           </p>
         </div>

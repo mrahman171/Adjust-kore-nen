@@ -68,6 +68,7 @@ export const ADJUSTMENTS: Adjustment[] = [
   { label: "ঘড়িকে দোষ দিন", tag: "blame", result: "ঘড়ি দায়ী। ঘড়ি ঠিকই ছিল, আপনি না।" },
   { label: "চার্জারের দোকান খুঁজুন", tag: "delay", result: "দোকান পাওয়া গেছে। বন্ধ।" },
   { label: "দোয়া করুন", tag: "silent", result: "দোয়া করা হয়েছে। বাকিটা আল্লাহর উপর।" },
+  { label: "ফাইল পুনরায় যাচাইয়ের আশ্বাস দিন", tag: "delay", result: "ফাইল পুনরায় আশ্বাস করা হয়েছে। পুনরায় আশ্বাস করা হয়েছে।" },
 
   // Village Politics Adjustments
   { label: "চেয়ারম্যানের কাছে যান", tag: "delay", result: "চেয়ারম্যান শুনেছেন। 'দেখি কী করা যায়' বলেছেন।" },

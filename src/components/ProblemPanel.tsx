@@ -41,7 +41,7 @@ export function ProblemPanel({
       : "bg-green-500/10";
 
   return (
-    <div className="relative overflow-hidden rounded-3xl panel-surface p-6 sm:p-8">
+    <div className="relative overflow-hidden rounded-3xl panel-surface p-4 sm:p-6 md:p-8">
       {/* Background decorations */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(181,54,46,0.08),_transparent_50%)]" />
       <div className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-[var(--accent)]/10 blur-3xl" />
@@ -61,10 +61,10 @@ export function ProblemPanel({
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
               {roundLabel}
             </span>
-            <div className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-[var(--accent)]/10 px-2.5 py-0.5 border border-[var(--accent)]/20">
+            {/* <div className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-[var(--accent)]/10 px-2.5 py-0.5 border border-[var(--accent)]/20">
               <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
               <p className="text-xs font-semibold text-[var(--accent)]">{categoryLabel}</p>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -100,15 +100,20 @@ export function ProblemPanel({
         <div className="pointer-events-none absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[var(--accent)]/10 blur-xl" />
 
         {/* Header accent */}
-        <div className="mb-4 flex items-center gap-3">
-          <div className={`h-1 w-16 rounded-full bg-gradient-to-r ${escalationColor}`} />
-          <p className={`text-xs font-bold uppercase text-[var(--accent)] ${chaosTone}`}>
-            ক্রাইসিস ব্রিফিং
-          </p>
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className={`h-1 w-16 rounded-full bg-gradient-to-r ${escalationColor}`} />
+            <p className={`text-xs font-bold uppercase text-[var(--accent)] ${chaosTone}`}>
+              ক্রাইসিস ব্রিফিং
+            </p>
+          </div>
+          <span className="rounded-full bg-[var(--accent)]/10 px-2.5 py-0.5 text-xs font-semibold text-[var(--accent)] border border-[var(--accent)]/20">
+            {categoryLabel}
+          </span>
         </div>
 
         {/* Main crisis text */}
-        <h2 className="text-2xl leading-tight sm:text-3xl">{crisisText}</h2>
+        <h2 className="text-xl leading-tight break-words hyphens-auto sm:text-2xl md:text-3xl">{crisisText}</h2>
 
         {/* Footer info */}
         <div className="mt-5 flex flex-wrap items-center gap-4 border-t border-[var(--line)]/50 pt-4">
