@@ -642,7 +642,7 @@ export default function Home() {
 
       <main className="mx-auto flex w-full max-w-6xl flex-col gap-10">
         <Header
-          title="ADJUST KORE NEN"
+          title="অ্যাডজাস্ট করে নেন"
           subtitle="সব সমস্যার সমাধান একটাই — অ্যাডজাস্ট করে নেন। আপনি সিস্টেম। ঘোষণাই বাস্তবতা।"
         />
 

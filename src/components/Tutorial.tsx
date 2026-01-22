@@ -18,7 +18,7 @@ export interface TutorialStep {
 const TUTORIAL_STEPS: TutorialStep[] = [
   {
     id: "welcome",
-    title: "Welcome to Adjust Kore Nen!",
+    title: "Welcome to অ্যাডজাস্ট করে নেন!",
     titleBn: "অ্যাডজাস্ট করে নেন-এ স্বাগতম!",
     content: "You are a Crisis Management Officer. Your job is to 'adjust' problems - not solve them!",
     contentBn: "আপনি একজন ক্রাইসিস ম্যানেজমেন্ট অফিসার। আপনার কাজ সমস্যা 'অ্যাডজাস্ট' করা - সমাধান নয়!",

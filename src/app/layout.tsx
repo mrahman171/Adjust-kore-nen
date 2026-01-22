@@ -14,7 +14,7 @@ const body = Newsreader({
 });
 
 export const metadata: Metadata = {
-  title: "Adjust Kore Nen",
+  title: "অ্যাডজাস্ট করে নেন",
   description:
     "একটা স্যাটায়ার গেম, যেখানে সব সমস্যার সমাধান—অ্যাডজাস্ট করে নেন।",
 };
