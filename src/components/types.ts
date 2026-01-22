@@ -19,11 +19,14 @@ export type LogEntry = {
   result: string;
 };
 
+export type EndingType = "patience_exhaustion" | "silent_overuse" | "committee_overflow" | "announcement_saturation" | "success";
+
 export type Ending = {
   title: string;
   message: string;
   grade?: string;
   subtitle?: string;
+  type?: EndingType;
 };
 
 export type Meters = {

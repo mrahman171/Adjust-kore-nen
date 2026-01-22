@@ -8,6 +8,7 @@ type Props = {
   round?: number;
   correctTags?: ("committee" | "announce" | "delay" | "blame" | "investigate" | "silent")[];
   correctAdjustmentLabel?: string;
+  revealedTag?: string | null;
 };
 
 // Get 4 random adjustments, always include the correct label when provided
