@@ -61,7 +61,10 @@ export function ProblemPanel({
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
               {roundLabel}
             </span>
-            <p className="text-[0.6rem] text-[var(--ink)]/50 uppercase tracking-wider">{categoryLabel}</p>
+            <div className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-[var(--accent)]/10 px-2.5 py-0.5 border border-[var(--accent)]/20">
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+              <p className="text-xs font-semibold text-[var(--accent)]">{categoryLabel}</p>
+            </div>
           </div>
         </div>
 
