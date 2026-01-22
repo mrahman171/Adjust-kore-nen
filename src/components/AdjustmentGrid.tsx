@@ -11,7 +11,7 @@ type Props = {
   revealedTag?: string | null;
 };
 
-// Get 4 random adjustments, always include the correct label when provided
+// Get 4 random adjustments: 1 correct + 3 wrong, all unique
 function getRandomAdjustments(
   correctTags?: ("committee" | "announce" | "delay" | "blame" | "investigate" | "silent")[],
   correctAdjustmentLabel?: string
@@ -19,21 +19,28 @@ function getRandomAdjustments(
   const shuffle = (items: Adjustment[]) =>
     [...items].sort(() => Math.random() - 0.5);
 
-  const selected: Adjustment[] = [];
+  // Find the correct adjustment
+  let correctAdjustment: Adjustment | undefined;
 
   if (correctAdjustmentLabel) {
-    const match = ADJUSTMENTS.find((adj) => adj.label === correctAdjustmentLabel);
-    if (match) selected.push(match);
-  } else if (correctTags && correctTags.length > 0) {
-    const correctPool = ADJUSTMENTS.filter((adj) => correctTags.includes(adj.tag));
-    selected.push(...shuffle(correctPool).slice(0, 1));
+    correctAdjustment = ADJUSTMENTS.find((adj) => adj.label === correctAdjustmentLabel);
   }
 
-  const uniqueByLabel = new Set(selected.map((adj) => adj.label));
-  const fallback = shuffle(
-    ADJUSTMENTS.filter((adj) => !uniqueByLabel.has(adj.label))
-  );
-  selected.push(...fallback.slice(0, Math.max(0, 4 - selected.length)));
+  // If no exact label match, fall back to correctTags
+  if (!correctAdjustment && correctTags && correctTags.length > 0) {
+    const correctPool = ADJUSTMENTS.filter((adj) => correctTags.includes(adj.tag));
+    correctAdjustment = shuffle(correctPool)[0];
+  }
+
+  // Get 3 wrong adjustments (excluding the correct one)
+  const wrongAdjustments = shuffle(
+    ADJUSTMENTS.filter((adj) => adj.label !== correctAdjustment?.label)
+  ).slice(0, 3);
+
+  // Combine correct + wrong and shuffle
+  const selected: Adjustment[] = correctAdjustment
+    ? [correctAdjustment, ...wrongAdjustments]
+    : wrongAdjustments.slice(0, 4);
 
   return shuffle(selected);
 }
