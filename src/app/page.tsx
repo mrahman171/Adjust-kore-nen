@@ -574,7 +574,7 @@ export default function Home() {
   }, [playSound]);
 
   return (
-    <div className={`min-h-screen px-4 py-10 text-[var(--ink)] sm:px-8 lg:px-12 ${shakeClass}`}>
+    <div className={`min-h-screen px-4 py-10 text-(--ink) sm:px-8 lg:px-12 ${shakeClass}`}>
       {/* Visual Effects */}
       <Confetti active={showConfetti} />
       <StreakFire streak={meters.streak} show={showStreakFire} />
@@ -743,10 +743,10 @@ export default function Home() {
               onRestart={resetGame}
             />
             {/* Share button overlay - responsive positioning */}
-            <div className="fixed bottom-3 right-3 z-[60] sm:bottom-4 sm:right-4 lg:bottom-6 lg:right-6">
+            <div className="fixed bottom-3 right-3 z-60 sm:bottom-4 sm:right-4 lg:bottom-6 lg:right-6">
               <button
                 onClick={() => setShowShareModal(true)}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[var(--accent-deep)] text-white text-xs font-bold shadow-lg hover:scale-105 active:scale-95 transition-transform sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-linear-to- from-(--accent) to-(--accent-deep) text-white text-xs font-bold shadow-lg hover:scale-105 active:scale-95 transition-transform sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
