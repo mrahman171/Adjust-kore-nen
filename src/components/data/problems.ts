@@ -398,7 +398,7 @@ export const PROBLEMS: Problem[] = [
     ],
   },
   {
-    adjustment: "হিসাবরক্ষককে দোষ দিন",
+    adjustment: "প্রক্রিয়াধীন থাকার কথা জানান",
     category: "ভ্যাট ও ট্যাক্স",
     base: "ট্যাক্স রিটার্ন জমা দিতে গেছেন। ফর্ম বুঝতে পারছেন না।",
     escalations: [
@@ -453,7 +453,7 @@ export const PROBLEMS: Problem[] = [
     ],
   },
   {
-    adjustment: "স্ট্যাটাস দিয়ে প্রতিবাদ করুন",
+    adjustment: "কাজে সাময়িক শিথিলতা প্রদানের সিদ্ধান্ত নিন",
     category: "ক্রিকেট ম্যাচ",
     base: "বাংলাদেশের ম্যাচ আজ। অফিসে কাজে মন নেই।",
     escalations: [
@@ -464,7 +464,7 @@ export const PROBLEMS: Problem[] = [
     ],
   },
   {
-    adjustment: "বাসায় খেয়ে যাওয়ার পরিকল্পনা করুন",
+    adjustment: "যাত্রাপথেই ইফতার গ্রহণের ব্যবস্থা করুন",
     category: "রমজানের ইফতার",
     base: "ইফতারের ১ ঘণ্টা আগে রাস্তায় আছেন। বাসায় পৌঁছাতে ২ ঘণ্টা লাগবে।",
     escalations: [
@@ -574,7 +574,7 @@ export const PROBLEMS: Problem[] = [
     ],
   },
   {
-    adjustment: "রাউটার রিস্টার্ট দিন",
+    adjustment: "কারিগরি ত্রুটির কথা উল্লেখ করুন",
     category: "নেটফ্লিক্স/স্ট্রিমিং",
     base: "সিরিজ দেখবেন। বাফারিং চলছে।",
     escalations: [
