@@ -92,7 +92,7 @@ export function StartPanel({ started, onStart }: Props) {
       </div>
 
       {/* Manual card */}
-      <div className="relative hidden overflow-hidden rounded-3xl lg:flex lg:flex-col">
+      <div className="relative overflow-hidden rounded-3xl flex flex-col">
         {/* Glass background */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-[var(--paper-soft)]/90 to-[var(--paper-strong)]/80 backdrop-blur-xl" />
         <div className="absolute inset-0 border border-white/50 rounded-3xl" />
